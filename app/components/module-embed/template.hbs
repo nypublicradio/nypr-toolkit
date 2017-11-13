@@ -1,0 +1,16 @@
+{{yield
+  (component 'messaging-frame' register=(action 'register'))
+  (action 'postMessage')}}
+
+  
+<div class="module-embed__footer">
+  <button {{action 'generate'}}>generate</button>
+</div>
+
+{{#if showDialog}}
+  {{#modal-dialog onClose=(action (mut showDialog) false) targetAttachment="center" translucentOverlay=true}}
+    <pre>
+      &lt;iframe src="{{embedCode}}" width="100%"&gt;&lt;/iframe&gt;
+    </pre>
+  {{/modal-dialog}}
+{{/if}}
