@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'toolkit',
+    modulePrefix: 'nypr-toolkit',
     environment,
     rootURL: '/',
     locationType: 'auto',
