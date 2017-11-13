@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { find } from 'ember-native-dom-helpers';
 
 moduleForComponent('messaging-frame', 'Integration | Component | messaging frame', {
   integration: true
@@ -11,7 +12,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{messaging-frame}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(find('.messaging-frame'), 'it renders');
 
   // Template block usage:
   this.render(hbs`
@@ -20,5 +21,5 @@ test('it renders', function(assert) {
     {{/messaging-frame}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(find('.messaging-frame'), 'it renders');
 });
