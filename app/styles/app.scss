@@ -1,2 +1,25 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+
+@import "base";
+
+.l-page {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.module-embed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.module-embed__column {
+  margin-bottom: 25px;
+}
+
+.module-embed__footer {
+  text-align: center;
+  flex-basis: 100%;
+}
