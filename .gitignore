@@ -20,6 +20,8 @@ testem.log
 .*swp
 .*swo
 .env
+.env.deploy.*
+!.env.deploy.sample
 
 # ember-try
 .node_modules.ember-try/
