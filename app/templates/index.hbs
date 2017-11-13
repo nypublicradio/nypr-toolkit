@@ -4,15 +4,19 @@
     
     <div class="module-embed__column">
       <p>
-        title:
-        {{input value=title input=(action postMessage 'title' title)}}
+        headline:
+        {{input value=headline input=(action postMessage 'headline' headline)}}
       </p>
       <p>
-        email:
-        {{input value=email input=(action postMessage 'email' email)}}
+        summary:
+        {{input value=summary input=(action postMessage 'summary' summary)}}
       </p>
       <p>
-        url:
+        Call To Action:
+        {{input value=callToAction input=(action postMessage 'callToAction' callToAction)}}
+      </p>
+      <p>
+        Link Out URL:
         {{input value=url input=(action postMessage 'url' url)}}
       </p>
     </div>
