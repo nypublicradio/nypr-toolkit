@@ -1,0 +1,20 @@
+<div class="l-page">
+  {{#module-embed as |iframe postMessage|}}
+    {{component iframe height="300" src=model.callToAction name="call-to-action"}}
+    
+    <div class="module-embed__column">
+      <p>
+        title:
+        {{input value=title input=(action postMessage 'title' title)}}
+      </p>
+      <p>
+        email:
+        {{input value=email input=(action postMessage 'email' email)}}
+      </p>
+      <p>
+        url:
+        {{input value=url input=(action postMessage 'url' url)}}
+      </p>
+    </div>
+  {{/module-embed}}
+</div>
