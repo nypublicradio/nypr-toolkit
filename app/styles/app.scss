@@ -1,6 +1,10 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 
+.ember-modal-dialog {
+  max-width: 80%;
+}
+
 @import "base";
 
 .l-page {
