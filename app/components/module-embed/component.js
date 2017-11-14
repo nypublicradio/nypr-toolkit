@@ -23,7 +23,7 @@ export default Component.extend({
     generate() {
       let params = this.get('params');
       let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
-      this.set('embedCode', `${this.get('src')}?${queryParams}`);
+      this.set('embedCode', `${this.get('src')}${queryParams ? `?${queryParams}` : ''}`);
       this.set('showDialog', true);
     },
   }
