@@ -22,5 +22,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('node_modules/normalize.css/normalize.css');
+  app.import('node_modules/pym.js/dist/pym.v1.js');
+  app.import('vendor/shims/pym.js');
   return app.toTree();
 };
