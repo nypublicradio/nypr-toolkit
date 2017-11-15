@@ -8,6 +8,8 @@
 }
 
 @import "base";
+@import "components/module-embed";
+@import "components/messaging-frame";
 
 .l-page {
   max-width: 1000px;
@@ -17,29 +19,4 @@
 
 .l-header {
   text-align: center;
-}
-
-.module-embed {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.module-embed__column {
-  margin-bottom: 25px;
-}
-
-.module-embed__footer {
-  text-align: center;
-  flex-basis: 100%;
-}
-
-.module-embed__markup {
-  margin: 0;
-  padding: 25px;
-  background: #e1e1e1;
-}
-
-.messaging-frame {
-  user-select: none;
 }
