@@ -1,0 +1,6 @@
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{label}}
+{{/if}}
+{{input class="labelled-input__input" value=(get this key) input=(action onInput key (get this key))}}
