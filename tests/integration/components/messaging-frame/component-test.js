@@ -1,6 +1,8 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent } from 'ember-qunit';
+import test from 'ember-sinon-qunit/test-support/test';
 import hbs from 'htmlbars-inline-precompile';
 import { find } from 'ember-native-dom-helpers';
+import pym from 'pym';
 
 moduleForComponent('messaging-frame', 'Integration | Component | messaging frame', {
   integration: true
@@ -22,4 +24,18 @@ test('it renders', function(assert) {
   `);
 
   assert.ok(find('.messaging-frame'), 'it renders');
+});
+
+test('it registers with pym if there is a src', function() {
+  this.mock(pym).expects('Parent').once().withArgs('idFoo', 'srcFoo');
+  
+  this.render(hbs`{{messaging-frame id='idFoo' src='srcFoo'}}`);
+})
+
+test('it registers with the parent context if provided a register function', function() {
+  this.stub(pym, 'Parent').returns({iframe: 'el'});
+  let mock = this.mock().once().withArgs('foo-name', 'srcFoo', 'el');
+  this.set('register', mock);
+  
+  this.render(hbs`{{messaging-frame src='srcFoo' register=register name='foo-name'}}`);
 });
