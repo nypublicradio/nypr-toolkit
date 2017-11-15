@@ -3,7 +3,9 @@
     <h2>Highlighted Call-Out with CTA</h2>
   </div>
   {{#module-embed as |iframe postMessage|}}
-    {{component iframe height="300" src=model.callToAction name="call-to-action"}}
+    <div class="module-embed__column">
+      {{component iframe src=model.callToAction name="call-to-action"}}
+    </div>
     
     <div class="module-embed__column">
       <p>
