@@ -10,7 +10,8 @@
 {{#if showDialog}}
   {{#modal-dialog onClose=(action (mut showDialog) false) targetAttachment="center" translucentOverlay=true}}
     <pre class="module-embed__markup">
-      &lt;iframe width="100%" src="{{embedCode}}"&gt;&lt;/iframe&gt;
+      &lt;div data-pym-src="{{embedCode}}"&gt;Loading...&lt;/div&gt;<br />
+      &lt;script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"&gt;&lt;/script&gt;
     </pre>
   {{/modal-dialog}}
 {{/if}}
