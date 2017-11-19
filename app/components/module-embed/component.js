@@ -11,13 +11,14 @@ export default Component.extend({
   actions: {
     register(name, src, element) {
       this.set('src', src);
+      this.set('name', name);
       this.get('client').set(`targetOriginMap.${name}`, src);
       this.get('client').addTarget(name, element.contentWindow);
     },
     
     postMessage(key, value) {
       this.set(`params.${key}`, encodeURIComponent(value));
-      this.get('client').fetch('call-to-action:update', { [key]: value });
+      this.get('client').fetch(`${this.get('name')}:update`, { [key]: value });
     },
     
     generate() {
