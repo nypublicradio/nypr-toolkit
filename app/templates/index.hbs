@@ -23,4 +23,17 @@
       {{/labelled-input}}
     </div>
   {{/module-embed}}
+  
+  <div class="l-header">
+    <h2>Newsletter Signup</h2>
+  </div>
+  {{#module-embed as |iframe postMessage|}}
+    <div class="module-embed__column">
+      {{component iframe src=model.newsletterSignup name="newsletter-signup"}}
+    </div>
+    
+    <div class="module-embed__column">
+      {{labelled-input key='mailchimpId' onInput=postMessage}}
+    </div>
+  {{/module-embed}}
 </div>

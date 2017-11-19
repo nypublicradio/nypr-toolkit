@@ -24,7 +24,8 @@ module.exports = function(environment) {
     },
     
     embeds: {
-      callToAction: process.env.CALL_TO_ACTION
+      callToAction: process.env.CALL_TO_ACTION,
+      newsletterSignup: process.env.NEWSLETTER_SIGNUP
     }
   };
 
