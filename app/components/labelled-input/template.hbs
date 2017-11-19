@@ -1,6 +1,9 @@
 {{#if hasBlock}}
-  {{yield}}
+  {{yield (hash
+    field=(component 'labelled-input/field' class="labelled-input__input" value=(get this key) input=(action onInput key (get this key)))
+    label=label
+  )}}
 {{else}}
   {{label}}
+  {{input class="labelled-input__input" value=(get this key) input=(action onInput key (get this key))}}
 {{/if}}
-{{input class="labelled-input__input" value=(get this key) input=(action onInput key (get this key))}}

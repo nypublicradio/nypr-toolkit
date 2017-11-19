@@ -9,9 +9,18 @@
     
     <div class="module-embed__column">
       {{labelled-input key='headline' onInput=postMessage}}
-      {{labelled-input key='summary' onInput=postMessage}}
-      {{labelled-input key='callToAction' onInput=postMessage}}
-      {{labelled-input key='url' onInput=postMessage}}
+      {{#labelled-input key='summary' onInput=postMessage as |input|}}
+        Short blurb
+        {{input.field}}
+      {{/labelled-input}}
+      {{#labelled-input key='callToAction' onInput=postMessage as |input|}}
+        Button text (If left blank, no button will appear) 
+        {{input.field}}
+      {{/labelled-input}}
+      {{#labelled-input key='url' onInput=postMessage as |input|}}
+        URL for the button 
+        {{input.field}}
+      {{/labelled-input}}
     </div>
   {{/module-embed}}
 </div>
