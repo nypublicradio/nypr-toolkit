@@ -59,10 +59,10 @@ test('embeds and communicates with iframes', function(assert) {
     done();
     
     click('button');
-    let modal = find('.module-embed__markup');
+    let modal = find('.copy-block__input');
     const EMBED = `
-      <div data-pym-src="${SRC}?${KEY}=foo">Loading...</div>
-      <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+<div data-pym-src="${SRC}?${KEY}=foo">Loading...</div>
+<script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
     `;
     assert.equal(modal.textContent.trim(), EMBED.trim(), 'generates expected embed code');
   });

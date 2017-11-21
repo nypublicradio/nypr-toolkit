@@ -29,7 +29,7 @@ test('it renders', function(assert) {
 test('it registers with pym if there is a src', function() {
   this.mock(pym).expects('Parent').once().withArgs('idFoo', 'srcFoo');
   
-  this.render(hbs`{{messaging-frame id='idFoo' src='srcFoo'}}`);
+  this.render(hbs`{{messaging-frame targetId='idFoo' src='srcFoo'}}`);
 })
 
 test('it registers with the parent context if provided a register function', function() {
