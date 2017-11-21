@@ -1,8 +1,13 @@
 <div class="l-page">
-  <div class="l-header">
-    <h2>Highlighted Call-Out with CTA</h2>
-  </div>
+  
   {{#module-embed as |embed|}}
+    {{#embed.header as |header|}}
+      {{#header.title}}Call-to-Action Tool{{/header.title}}
+      
+      {{#header.blurb}}
+        Contains a headline, a short blurb, and an optional call-to-action button. Use this to encourage users to take a survey, join a Facebook group, post with a particular hashtag, etc.
+      {{/header.blurb}}
+    {{/embed.header}}
     {{#embed.column as |expand|}}
       <span class="iframe-label">Preview</span>
       {{embed.iframe src=model.callToAction name="call-to-action" expand=expand}}
@@ -31,10 +36,16 @@
     {{/embed.column}}
   {{/module-embed}}
   
-  <div class="l-header">
-    <h2>Newsletter Signup</h2>
-  </div>
+  <hr />
+  
   {{#module-embed as |embed|}}
+    {{#embed.header as |header|}}
+      {{#header.title}}Newsletter Sign-up Tool{{/header.title}}
+      {{#header.blurb}}
+        An easy way to quickly let users sign up for a mailing list. 
+      {{/header.blurb}}
+    {{/embed.header}}
+    
     {{#embed.column as |expand|}}
       {{embed.iframe src=model.newsletterSignup name="newsletter-signup" expand=expand}}
     {{/embed.column}}
