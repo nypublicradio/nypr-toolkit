@@ -1,0 +1,43 @@
+@import "../mixins/vars";
+
+.embed-dialog {
+  position: relative;
+  padding: 60px 35px;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid $gray;
+}
+
+.embed-dialog__title {
+  font-size: 32px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.embed-dialog__blurb {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 0;
+  margin-bottom: 25px;
+}
+
+.embed-dialog__markup {
+  margin: 0;
+  padding: 25px;
+  background: $lightgray;
+}
+
+.ember-modal-overlay.embed-dialog__overlay {
+  background-color: rgba(white, 0.9);
+}
+
+.embed-dialog__close {
+  position: absolute;
+  top: 25px;
+  right: 33px;
+  
+  > button {
+    @include blank-btn;
+  }
+}
