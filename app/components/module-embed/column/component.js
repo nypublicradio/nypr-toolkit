@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['module-embed__column']
+  classNames: ['module-embed__column'],
+  classNameBindings: ['isWide'],
 });

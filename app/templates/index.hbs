@@ -3,8 +3,9 @@
     <h2>Highlighted Call-Out with CTA</h2>
   </div>
   {{#module-embed as |embed|}}
-    {{#embed.column}}
-      {{embed.iframe src=model.callToAction name="call-to-action"}}
+    {{#embed.column as |expand|}}
+      <span class="iframe-label">Preview</span>
+      {{embed.iframe src=model.callToAction name="call-to-action" expand=expand}}
     {{/embed.column}}
     
     {{#embed.column}}
@@ -34,8 +35,8 @@
     <h2>Newsletter Signup</h2>
   </div>
   {{#module-embed as |embed|}}
-    {{#embed.column}}
-      {{embed.iframe src=model.newsletterSignup name="newsletter-signup"}}
+    {{#embed.column as |expand|}}
+      {{embed.iframe src=model.newsletterSignup name="newsletter-signup" expand=expand}}
     {{/embed.column}}
     
     {{#embed.column}}
