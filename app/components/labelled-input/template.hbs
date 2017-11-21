@@ -1,6 +1,12 @@
 {{#if hasBlock}}
   {{yield (hash
-    field=(component 'labelled-input/field' class="labelled-input__input" value=(get this key) input=(action onInput key (get this key)) id=(concat elementId '-input'))
+    field=(component 'labelled-input/field'
+           class="labelled-input__input"
+           value=(get this key)
+           input=(action onInput key (get this key))
+           blur=(action validateProperty)
+           id=(concat elementId '-input'))
+           
     label=(component 'labelled-input/label' text=label for=(concat elementId '-input'))
   )}}
 {{else}}
@@ -12,5 +18,6 @@
     class="labelled-input__input"
     value=(get this key)
     input=(action onInput key (get this key))
+    blur=(action validateProperty)
     id=(concat elementId '-input')}}
 {{/if}}

@@ -18,7 +18,7 @@ export default Component.extend({
     },
     
     postMessage(key, value) {
-      this.set(`params.${key}`, encodeURIComponent(value));
+      // this.set(`params.${key}`, encodeURIComponent(value));
       this.get('client').fetch(`${this.get('name')}:update`, { [key]: value });
     },
     
