@@ -1,12 +1,38 @@
+@import "../mixins/vars";
+@import "../mixins/buttons";
+
 .module-embed {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 75px;
+}
+
+.module-embed__header {
+  flex-basis: 100%;
+}
+
+.module-embed__title {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.38;
+  margin-bottom: 14px;
+}
+
+.module-embed__blurb {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: 55px;
 }
 
 .module-embed__column {
-  flex: 1;
+  flex: 0 1 48%;
   margin-bottom: 25px;
+  
+  &.is-wide {
+    flex-basis: 100%;
+  }
 }
 
 .module-embed__footer {
@@ -21,13 +47,11 @@
 }
 
 .module-embed__button {
-  appearance: none;
-  border: none;
-  
-  font-family: 'Open Sans', sans-serif;
-  cursor: pointer;
+  @include btn;
   padding: 15px;
-  text-transform: uppercase;
-  background-color: #eaeaea;
-  border: 1px solid black;
+  background-color: $teal;
+  color: white;
+  
+  display: block;
+  width: 100%;
 }
