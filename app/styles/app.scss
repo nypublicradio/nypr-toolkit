@@ -12,6 +12,8 @@
 @import "components/messaging-frame";
 @import "components/labelled-input";
 
+@import "mixins/text";
+
 .l-page {
   max-width: 1000px;
   width: 100%;
@@ -20,4 +22,8 @@
 
 .l-header {
   text-align: center;
+}
+
+.iframe-label {
+  @include small-text-display;
 }
