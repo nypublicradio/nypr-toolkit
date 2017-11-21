@@ -2,38 +2,46 @@
   <div class="l-header">
     <h2>Highlighted Call-Out with CTA</h2>
   </div>
-  {{#module-embed as |iframe postMessage|}}
-    <div class="module-embed__column">
-      {{component iframe src=model.callToAction name="call-to-action"}}
-    </div>
+  {{#module-embed as |embed|}}
+    {{#embed.column}}
+      {{embed.iframe src=model.callToAction name="call-to-action"}}
+    {{/embed.column}}
     
-    <div class="module-embed__column">
-      {{labelled-input key='headline' onInput=postMessage}}
-      {{#labelled-input key='summary' onInput=postMessage as |input|}}
+    {{#embed.column}}
+      {{labelled-input key='headline' onInput=embed.sendMessage}}
+      
+      {{#labelled-input key='summary' onInput=embed.sendMessage as |input|}}
         Short blurb
         {{input.field}}
       {{/labelled-input}}
-      {{#labelled-input key='callToAction' onInput=postMessage as |input|}}
+      
+      {{#labelled-input key='callToAction' onInput=embed.sendMessage as |input|}}
         Button text (If left blank, no button will appear) 
         {{input.field}}
       {{/labelled-input}}
-      {{#labelled-input key='url' onInput=postMessage as |input|}}
+      
+      {{#labelled-input key='url' onInput=embed.sendMessage as |input|}}
         URL for the button 
-        {{input.field}}
+        {{input.field placeholder="http://website.com"}}
       {{/labelled-input}}
-    </div>
+      
+      {{embed.generateButton}}
+      
+    {{/embed.column}}
   {{/module-embed}}
   
   <div class="l-header">
     <h2>Newsletter Signup</h2>
   </div>
-  {{#module-embed as |iframe postMessage|}}
-    <div class="module-embed__column">
-      {{component iframe src=model.newsletterSignup name="newsletter-signup"}}
-    </div>
+  {{#module-embed as |embed|}}
+    {{#embed.column}}
+      {{embed.iframe src=model.newsletterSignup name="newsletter-signup"}}
+    {{/embed.column}}
     
-    <div class="module-embed__column">
-      {{labelled-input key='mailchimpId' onInput=postMessage}}
-    </div>
+    {{#embed.column}}
+      {{labelled-input key='mailchimpId' onInput=embed.sendMessage}}
+      
+      {{embed.generateButton}}
+    {{/embed.column}}
   {{/module-embed}}
 </div>

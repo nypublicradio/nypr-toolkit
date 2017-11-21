@@ -1,11 +1,10 @@
-{{yield
-  (component 'messaging-frame' register=(action 'register'))
-  (action 'postMessage')}}
-
-  
-<div class="module-embed__footer">
-  <button class="module-embed__button" {{action 'generate'}}>generate</button>
-</div>
+{{yield (hash
+  header=(component 'module-embed/header')
+  column=(component 'module-embed/column')
+  generateButton=(component 'module-embed/generate' click=(action 'generate'))
+  iframe=(component 'messaging-frame' register=(action 'register'))
+  sendMessage=(action 'postMessage')
+)}}
 
 {{#if showDialog}}
   {{#modal-dialog onClose=(action (mut showDialog) false) targetAttachment="center" translucentOverlay=true}}
