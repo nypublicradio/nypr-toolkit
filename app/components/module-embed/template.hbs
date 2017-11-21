@@ -7,10 +7,19 @@
 )}}
 
 {{#if showDialog}}
-  {{#modal-dialog onClose=(action (mut showDialog) false) targetAttachment="center" translucentOverlay=true}}
-    <pre class="module-embed__markup">
-      &lt;div data-pym-src="{{embedCode}}"&gt;Loading...&lt;/div&gt;<br />
-      &lt;script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"&gt;&lt;/script&gt;
-    </pre>
+  {{#modal-dialog onClose=(action (mut showDialog) false) targetAttachment="center" translucentOverlay=true containerClass="embed-dialog" overlayClass="embed-dialog__overlay"}}
+    <div class="embed-dialog__header">
+      <h3 class="embed-dialog__title">Almost done</h3>
+      <p class="embed-dialog__blurb">Now you just have to copy this code and place it on the webpage where you want the tool to appear:</p>
+    </div>
+    <div class="embed-dialog__markup">
+    {{#copy-block}}
+&lt;div data-pym-src="{{embedCode}}"&gt;Loading...&lt;/div&gt;
+&lt;script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"&gt;&lt;/script&gt;{{/copy-block}}
+    </div>
+    
+    <div class="embed-dialog__close">
+      <button {{action (action (mut showDialog) false)}}>{{close-icon}}</button>
+    </div>
   {{/modal-dialog}}
 {{/if}}
