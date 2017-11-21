@@ -3,7 +3,7 @@
   column=(component 'module-embed/column')
   generateButton=(component 'module-embed/generate' click=(action 'generate'))
   iframe=(component 'messaging-frame' register=(action 'register'))
-  sendMessage=(action 'postMessage')
+  input=(component 'labelled-input' onInput=(action 'postMessage'))
 )}}
 
 {{#if showDialog}}
@@ -12,6 +12,7 @@
       <h3 class="embed-dialog__title">Almost done</h3>
       <p class="embed-dialog__blurb">Now you just have to copy this code and place it on the webpage where you want the tool to appear:</p>
     </div>
+
     <div class="embed-dialog__markup">
     {{#copy-block}}
 &lt;div data-pym-src="{{embedCode}}"&gt;Loading...&lt;/div&gt;

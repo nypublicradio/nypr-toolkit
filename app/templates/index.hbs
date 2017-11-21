@@ -1,6 +1,6 @@
 <div class="l-page">
   
-  {{#module-embed as |embed|}}
+  {{#module-embed required=['url', 'headline'] as |embed|}}
     {{#embed.header as |header|}}
       {{#header.title}}Call-to-Action Tool{{/header.title}}
       
@@ -15,28 +15,28 @@
     {{/embed.column}}
     
     {{#embed.column}}
-      {{labelled-input key='headline' onInput=embed.sendMessage}}
+      {{embed.input key='headline'}}
       
-      {{#labelled-input key='summary' onInput=embed.sendMessage as |input|}}
+      {{#embed.input key='summary' as |input|}}
         {{#input.label}}
           Short blurb
         {{/input.label}}
         {{input.field}}
-      {{/labelled-input}}
+      {{/embed.input}}
       
-      {{#labelled-input key='callToAction' onInput=embed.sendMessage as |input|}}
+      {{#embed.input key='callToAction' as |input|}}
         {{#input.label}}
           Button text (If left blank, no button will appear) 
         {{/input.label}}
         {{input.field}}
-      {{/labelled-input}}
+      {{/embed.input}}
       
-      {{#labelled-input key='url' onInput=embed.sendMessage as |input|}}
+      {{#embed.input key='url' as |input|}}
         {{#input.label}}
           URL for the button 
         {{/input.label}}
         {{input.field placeholder="http://website.com"}}
-      {{/labelled-input}}
+      {{/embed.input}}
       
       {{embed.generateButton}}
       
@@ -58,7 +58,7 @@
     {{/embed.column}}
     
     {{#embed.column}}
-      {{labelled-input key='mailchimpId' onInput=embed.sendMessage}}
+      {{embed.input key='mailchimpId'}}
       
       {{embed.generateButton}}
     {{/embed.column}}

@@ -48,7 +48,7 @@ test('embeds and communicates with iframes', function(assert) {
     {{#module-embed client=client params=params as |embed|}}
       {{embed.iframe src=src name=name}}
       
-      {{labelled-input key=key onInput=embed.sendMessage}}
+      {{embed.input key=key}}
       
       {{embed.generateButton}}
     {{/module-embed}}
