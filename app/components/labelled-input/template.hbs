@@ -1,9 +1,16 @@
 {{#if hasBlock}}
   {{yield (hash
-    field=(component 'labelled-input/field' class="labelled-input__input" value=(get this key) input=(action onInput key (get this key)))
-    label=label
+    field=(component 'labelled-input/field' class="labelled-input__input" value=(get this key) input=(action onInput key (get this key)) id=(concat elementId '-input'))
+    label=(component 'labelled-input/label' text=label for=(concat elementId '-input'))
   )}}
 {{else}}
-  {{label}}
-  {{input class="labelled-input__input" value=(get this key) input=(action onInput key (get this key))}}
+  {{#labelled-input/label for=(concat elementId '-input')}}
+    {{label}}
+  {{/labelled-input/label}}
+
+  {{input
+    class="labelled-input__input"
+    value=(get this key)
+    input=(action onInput key (get this key))
+    id=(concat elementId '-input')}}
 {{/if}}
