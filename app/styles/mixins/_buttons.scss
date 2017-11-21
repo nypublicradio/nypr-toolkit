@@ -1,0 +1,19 @@
+@mixin btn {
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+}
+
+@mixin blank-btn {
+  @include btn;
+  
+  &:focus,
+  &:active {
+    outline: none;
+    border-bottom: 1px solid #999;
+  }
+}
