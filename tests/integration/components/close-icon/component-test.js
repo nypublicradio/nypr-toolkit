@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { find } from 'ember-native-dom-helpers';
 
 moduleForComponent('close-icon', 'Integration | Component | close icon', {
   integration: true
@@ -11,14 +12,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{close-icon}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#close-icon}}
-      template block text
-    {{/close-icon}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(find('svg'), 'should render an svg');
 });

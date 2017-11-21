@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { find } from 'ember-native-dom-helpers';
 
 moduleForComponent('copy-block', 'Integration | Component | copy block', {
   integration: true
@@ -11,7 +12,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{copy-block}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(find('textarea'), 'renders a textarea');
 
   // Template block usage:
   this.render(hbs`
@@ -20,5 +21,5 @@ test('it renders', function(assert) {
     {{/copy-block}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(find('textarea').textContent.trim(), 'template block text', 'renders out block');
 });
