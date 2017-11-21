@@ -1,3 +1,5 @@
+@import "vars";
+
 @mixin btn {
   appearance: none;
   border: none;
@@ -14,6 +16,6 @@
   &:focus,
   &:active {
     outline: none;
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid $gray;
   }
 }

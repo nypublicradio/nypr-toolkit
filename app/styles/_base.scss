@@ -1,3 +1,5 @@
+@import "mixins/vars";
+
 *,
 *:before,
 *:after {
@@ -16,7 +18,7 @@ pre {
 hr {
   border-style: solid;
   border-width: 1px 0 0 0;
-  border-color: #ddd;
+  border-color: $mediumgray;
   margin-top: 0;
   margin-bottom: 75px;
 }

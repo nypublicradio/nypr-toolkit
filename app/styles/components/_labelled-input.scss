@@ -1,3 +1,4 @@
+@import "../mixins/vars";
 @import "../mixins/text";
 
 .labelled-input {
@@ -18,7 +19,7 @@
   
   &::placeholder {
     font-style: oblique;
-    color: #ccc;
+    color: $mediumgray;
   }
 }
 

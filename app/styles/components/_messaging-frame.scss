@@ -10,13 +10,13 @@
   vertical-align: middle;
   font-size: 12px;
   
-  color: #999;
+  color: $gray;
 }
 
 .messaging-frame__button {
   @include blank-btn;
   
-  color: #999;
+  color: $gray;
   
   &.active {
     color: $teal
