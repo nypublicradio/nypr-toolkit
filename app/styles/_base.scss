@@ -12,3 +12,11 @@ pre {
   white-space: normal;
   word-break: break-all;
 }
+
+hr {
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  border-color: #ddd;
+  margin-top: 0;
+  margin-bottom: 75px;
+}
