@@ -8,6 +8,7 @@
         Contains a headline, a short blurb, and an optional call-to-action button. Use this to encourage users to take a survey, join a Facebook group, post with a particular hashtag, etc.
       {{/header.blurb}}
     {{/embed.header}}
+    
     {{#embed.column as |expand|}}
       <span class="iframe-label">Preview</span>
       {{embed.iframe src=model.callToAction name="call-to-action" expand=expand}}
@@ -17,17 +18,23 @@
       {{labelled-input key='headline' onInput=embed.sendMessage}}
       
       {{#labelled-input key='summary' onInput=embed.sendMessage as |input|}}
-        Short blurb
+        {{#input.label}}
+          Short blurb
+        {{/input.label}}
         {{input.field}}
       {{/labelled-input}}
       
       {{#labelled-input key='callToAction' onInput=embed.sendMessage as |input|}}
-        Button text (If left blank, no button will appear) 
+        {{#input.label}}
+          Button text (If left blank, no button will appear) 
+        {{/input.label}}
         {{input.field}}
       {{/labelled-input}}
       
       {{#labelled-input key='url' onInput=embed.sendMessage as |input|}}
-        URL for the button 
+        {{#input.label}}
+          URL for the button 
+        {{/input.label}}
         {{input.field placeholder="http://website.com"}}
       {{/labelled-input}}
       
