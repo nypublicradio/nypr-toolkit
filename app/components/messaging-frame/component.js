@@ -20,5 +20,12 @@ export default Component.extend({
         register(get(this, 'name'), src, parent.iframe);
       }
     }
+  },
+  
+  actions: {
+    expand(value) {
+      this.set('isWide', value);
+      this.get('expand')(value);
+    }
   }
 });

@@ -1,2 +1,9 @@
 <div class="messaging-frame__target" id={{targetId}}></div>
 
+{{#if expand}}
+<div class="messaging-frame__footer">
+  <button class="messaging-frame__button{{unless isWide ' active'}}" {{action 'expand' false}}>Mobile</button>
+   |
+  <button class="messaging-frame__button{{if isWide ' active'}}" {{action 'expand' true}}>Desktop</button>
+</div>
+{{/if}}
