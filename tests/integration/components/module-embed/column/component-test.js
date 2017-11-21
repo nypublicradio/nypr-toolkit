@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { find } from 'ember-native-dom-helpers';
 
 moduleForComponent('module-embed/column', 'Integration | Component | module embed/column', {
   integration: true
@@ -11,7 +12,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{module-embed/column}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(find('.module-embed__column'));
 
   // Template block usage:
   this.render(hbs`

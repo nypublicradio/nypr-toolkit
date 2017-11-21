@@ -1,4 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
+import { find } from 'ember-native-dom-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('module-embed/header', 'Integration | Component | module embed/header', {
@@ -11,7 +12,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{module-embed/header}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(find('.module-embed__header'));
 
   // Template block usage:
   this.render(hbs`
