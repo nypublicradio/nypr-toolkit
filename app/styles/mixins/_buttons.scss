@@ -9,6 +9,10 @@
   
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
+  
+  &[disabled] {
+    cursor: default;
+  }
 }
 
 @mixin blank-btn {
