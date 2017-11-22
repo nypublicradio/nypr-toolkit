@@ -46,11 +46,12 @@ jobs:
           command: |
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
               env | sed -n 's/^DEMO_//p' > .env
-              ./node_modules/ember-cli/bin/ember deploy demo --verbose --activate
+              export TARGET=demo
             elif grep -q "v[0-9]\+\.[0-9]\+\.[0-9]\+" <<< "$CIRCLE_TAG"; then
               env | sed -n 's/^PROD_//p' > .env
-              ./node_modules/ember-cli/bin/ember deploy production --verbose --activate
+              export TARGET=production
             fi
+            ./node_modules/ember-cli/bin/ember deploy $TARGET --verbose --activate
 
 workflows:
   version: 2
