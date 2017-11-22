@@ -1,6 +1,12 @@
 {{#if hasBlock}}
   {{yield (hash
-    field=(component 'labelled-input/field' class="labelled-input__input" value=(get this key) input=(action onInput key (get this key)) id=(concat elementId '-input'))
+    field=(component 'labelled-input/field'
+           class="labelled-input__input"
+           hasError=(if (get changeset.error key) true)
+           value=(get changeset key)
+           input=(action onInput key (get changeset key))
+           id=(concat elementId '-input'))
+           
     label=(component 'labelled-input/label' text=label for=(concat elementId '-input'))
   )}}
 {{else}}
@@ -8,9 +14,20 @@
     {{label}}
   {{/labelled-input/label}}
 
-  {{input
+  {{labelled-input/field
     class="labelled-input__input"
-    value=(get this key)
-    input=(action onInput key (get this key))
+    hasError=(if (get changeset.error key) true)
+    value=(get changeset key)
+    input=(action onInput key (get changeset key))
     id=(concat elementId '-input')}}
+{{/if}}
+
+{{#if (get changeset.error key)}}
+  <ul class="labelled-input__errors">
+    {{#each (get (get changeset.error key) 'validation') as |message|}}
+    <li>
+      {{message}}
+    </li>
+    {{/each}}
+  </ul>
 {{/if}}
