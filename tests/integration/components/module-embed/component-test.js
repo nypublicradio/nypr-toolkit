@@ -48,22 +48,22 @@ test('embeds and communicates with iframes', function(assert) {
     {{#module-embed client=client params=params as |embed|}}
       {{embed.iframe src=src name=name}}
       
-      {{embed.input key=key}}
+      {{embed.input key=key changeset=embed.changeset}}
       
       {{embed.generateButton}}
     {{/module-embed}}
   `);
   
   fillIn('input', 'foo').then(() => {
-    assert.equal(PARAMS['test-key'], encodeURIComponent('foo'));
-    done();
-    
-    click('button');
-    let modal = find('.copy-block__input');
-    const EMBED = `
+    click('button').then(() => {
+      assert.equal(PARAMS['test-key'], 'foo')
+      let modal = find('.copy-block__input');
+      const EMBED = `
 <div data-pym-src="${SRC}?${KEY}=foo">Loading...</div>
 <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
-    `;
-    assert.equal(modal.textContent.trim(), EMBED.trim(), 'generates expected embed code');
+      `;
+      assert.equal(modal.textContent.trim(), EMBED.trim(), 'generates expected embed code');
+      done();
+    });
   });
 });
