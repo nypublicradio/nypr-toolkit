@@ -3,7 +3,7 @@
 
 .labelled-input {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
   line-height: 2;
 }
 
@@ -11,7 +11,8 @@
   display: block;
   width: 100%;
   padding: 5px;
-  margin-bottom: 25px;
+  border: 1px solid $mediumgray;
+  // margin-bottom: 5px;
   
   font-size: 18px;
   line-height: 1.5;
@@ -21,8 +22,20 @@
     font-style: oblique;
     color: $mediumgray;
   }
+  
+  &.has-error {
+    border-color: $red;
+  }
 }
 
 .labelled-input__label {
   @include small-text-display;
+}
+
+.labelled-input__errors {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: $red;
+  font-size: 12px;
 }
