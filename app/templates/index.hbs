@@ -1,6 +1,6 @@
 <div class="l-page">
   
-  {{#module-embed required=['url', 'headline'] as |embed|}}
+  {{#module-embed validations=CTAValidations as |embed|}}
     {{#embed.header as |header|}}
       {{#header.title}}Call-to-Action Tool{{/header.title}}
       
@@ -15,23 +15,23 @@
     {{/embed.column}}
     
     {{#embed.column}}
-      {{embed.input key='headline'}}
+      {{embed.input key='headline' changeset=embed.changeset}}
       
-      {{#embed.input key='summary' as |input|}}
+      {{#embed.input key='summary' changeset=embed.changeset as |input|}}
         {{#input.label}}
           Short blurb
         {{/input.label}}
         {{input.field}}
       {{/embed.input}}
       
-      {{#embed.input key='callToAction' as |input|}}
+      {{#embed.input key='callToAction' changeset=embed.changeset as |input|}}
         {{#input.label}}
-          Button text (If left blank, no button will appear) 
+          Button text (if left blank, no button will appear) 
         {{/input.label}}
         {{input.field}}
       {{/embed.input}}
       
-      {{#embed.input key='url' as |input|}}
+      {{#embed.input key='url' changeset=embed.changeset as |input|}}
         {{#input.label}}
           URL for the button 
         {{/input.label}}
@@ -45,7 +45,7 @@
   
   <hr />
   
-  {{#module-embed as |embed|}}
+  {{#module-embed validations=NewsletterValidations as |embed|}}
     {{#embed.header as |header|}}
       {{#header.title}}Newsletter Sign-up Tool{{/header.title}}
       {{#header.blurb}}
@@ -58,7 +58,7 @@
     {{/embed.column}}
     
     {{#embed.column}}
-      {{embed.input key='mailchimpId'}}
+      {{embed.input key='mailchimpId' label='Mailchimp ID' changeset=embed.changeset}}
       
       {{embed.generateButton}}
     {{/embed.column}}
