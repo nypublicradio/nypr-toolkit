@@ -17,6 +17,12 @@ export default Component.extend({
   },
   
   actions: {
+    selectOrCopy() {
+      let selection = window.getSelection();
+      if (!selection.toString()) {
+        this.send('copy');
+      }
+    },
     copy() {
       let input = document.getElementById('copy-paste');
       input.select();

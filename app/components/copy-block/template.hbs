@@ -1,4 +1,4 @@
-<textarea class="copy-block__input" id="copy-paste" readonly {{action 'copy'}}>{{yield}}</textarea>
+<textarea class="copy-block__input" id="copy-paste" readonly {{action 'selectOrCopy'}}>{{yield}}</textarea>
 
 <div class="copy-block__footer">
   <button class="copy-block__button" {{action 'copy'}} disabled={{copied}}>{{unless copied 'Copy code' 'Copied!'}}</button>
