@@ -9,11 +9,7 @@ export default Component.extend({
   },
   
   clearSelection() {
-    if (document.selection) {
-      document.selection.empty();
-    } else if (window.getSelection) {
-      window.getSelection().removeAllRanges();
-    }
+    window.getSelection().removeAllRanges();
   },
   
   actions: {
