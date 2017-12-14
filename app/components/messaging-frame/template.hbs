@@ -2,8 +2,8 @@
 
 {{#if expand}}
 <div class="messaging-frame__footer">
-  <button class="messaging-frame__button{{unless isWide ' active'}}" {{action 'expand' false}}>Mobile</button>
+  <button class="messaging-frame__button{{if isWide ' active'}}" {{action 'expand' false}} disabled={{not isWide}}>Mobile</button>
    |
-  <button class="messaging-frame__button{{if isWide ' active'}}" {{action 'expand' true}}>Desktop</button>
+  <button class="messaging-frame__button{{unless isWide ' active'}}" {{action 'expand' true}} disabled={{isWide}}>Desktop</button>
 </div>
 {{/if}}

@@ -18,7 +18,23 @@
   
   color: $gray;
   
+  &:hover {
+    border-bottom: 1px solid $gray;
+    
+    &[disabled] {
+      border: none;
+    }
+  }
+  
   &.active {
-    color: $teal
+    color: $teal;
+    
+    &:hover {
+      border-bottom: 1px solid $teal;
+      
+      &[disabled] {
+        border: none;
+      }
+    }
   }
 }
