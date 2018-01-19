@@ -19,8 +19,8 @@ testem.log
 .*~
 .*swp
 .*swo
-.env
-.env.deploy.*
+.env*
+!.env.sample
 !.env.deploy.sample
 
 # ember-try
