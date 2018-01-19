@@ -1,7 +1,28 @@
-# toolkit
+# NYPR Toolkit
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+The NYPR Toolkit site provides a interface for customizing engagement modules.
+
+## Development
+
+To develop interactively with other modules, you'll need to add URLs that point to live instances of each module. You can point to the demo versions or spin up local copies and point to those.
+
+First make an env file. The sample file will point to the demo environment for each module.
+```
+$ cp .env.sample .env
+```
+
+Start your local server
+```
+$ ember serve
+```
+
+## Modules
+The toolkit site will embed configurable instances of the following static apps:
+
+- `call-to-action`: https://github.com/nypublicradio/nypr-call-to-action
+- `newsletter-signup`: https://github.com/nypublicradio/nypr-newsletter-signup
+
+Each of these has their own corresponding envvar which points at a running instance (described above).
 
 ## Prerequisites
 
@@ -12,35 +33,26 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](https://ember-cli.com/)
 * [Google Chrome](https://google.com/chrome/)
 
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd toolkit`
-* `npm install`
-
-## Running / Development
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
+## Running Tests
 
 * `ember test`
 * `ember test --server`
 
-### Building
+## Deploying
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+Deployment is handled by circle. Commits to `master` will deploy to the demo environment (i.e. https://demo-apps.nypr.org/toolkit). Tagged commits will deploy to the production environment.
 
-### Deploying
+## Environment Variables
 
-Specify what it takes to deploy your app.
+Name | Default | Description
+--- | --- | ---
+`AWS_BUCKET` | '' | Destination bucket for deploys
+`AWS_PREFIX` | '' | Path prefix for deployed assets
+`AWS_REGION` | '' | AWS Region for infrastructure
+`AWS_ACCESS_KEY_ID` | '' | AWS access key id
+`AWS_SECRET_ACCESS_KEY` | '' | AWS secret access key
+`CALL_TO_ACTION` | `https://demo-apps.nypr.org/call-to-action/` | `call-to-action` url
+`NEWSLETTER_SIGNUP` | `https://demo-apps.nypr.org/newsletter-signup/` | `newsletter-signup` url
 
 ## Further Reading / Useful Links
 
