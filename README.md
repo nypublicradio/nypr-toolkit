@@ -11,10 +11,11 @@ First make an env file. The sample file will point to the demo environment for e
 $ cp .env.sample .env
 ```
 
-Start your local server
+Start a local server.
 ```
 $ ember serve
 ```
+You can now visit the app at http://localhost:4200 in a browser.
 
 ## Modules
 The toolkit site will embed configurable instances of the following static apps:
