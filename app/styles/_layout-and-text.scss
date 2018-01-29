@@ -1,0 +1,32 @@
+@import "mixins/vars";
+@import "mixins/text";
+
+.l-page {
+  max-width: 730px;
+  padding: 0 15px 15px;
+}
+
+.l-page > h1 {
+  @include page-title-display;
+}
+
+.l-page > h2 {
+  @include section-head-display;
+}
+
+.l-page > h3 {
+  @include sub-head-display;
+}
+
+.l-page {
+  @include page-copy;
+}
+
+.l-page a[href] {
+  color: $teal;
+  text-decoration: none;
+}
+
+.l-page > blockquote {
+  font-style: oblique;
+}
