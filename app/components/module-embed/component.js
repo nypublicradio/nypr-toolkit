@@ -7,13 +7,18 @@ export default Component.extend({
   tagName: 'section',
   classNames: ['module-embed'],
   
-  params: {},
   
+  // if params are passed in, use those
+  // otherwise set a new blank object in init so state isn't shared
+  params: null,
   client: service('window-messenger-client'),
   
   init() {
     this._super(...arguments);
-    let { params, validations } = this.getProperties('params', 'validations');
+    if (!this.get('params')) {
+      this.set('params', {});
+    }
+    let { validations, params } = this.getProperties('params', 'validations');
     this.set('changeset', new Changeset(params, lookupValidator(validations), validations, { skipValidate: true }));
   },
   
