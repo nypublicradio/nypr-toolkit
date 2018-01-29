@@ -24,7 +24,7 @@ jobs:
           name: Install bower dependencies
           command: |
             npm i bower
-            bower i
+            ./node_modules/bower/bin/bower i
       - save_cache:
           key: bower-deps-{{ checksum "bower.json" }}
           paths:
