@@ -22,7 +22,9 @@ jobs:
           key: bower-deps-{{ checksum "bower.json" }}
       - run:
           name: Install bower dependencies
-          command: bower i
+          command: |
+            npm i -g bower
+            bower i
       - save_cache:
           key: bower-deps-{{ checksum "bower.json" }}
           paths:
