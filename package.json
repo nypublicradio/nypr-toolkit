@@ -42,6 +42,7 @@
     "ember-modal-dialog": "^2.4.1",
     "ember-native-dom-helpers": "^0.5.10",
     "ember-power-select": "^2.0.0-beta.0",
+    "ember-remarkable": "^3.6.1",
     "ember-resolver": "^4.0.0",
     "ember-sinon": "^1.0.1",
     "ember-sinon-qunit": "^2.1.0",
