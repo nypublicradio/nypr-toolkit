@@ -7,8 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('getting-started');
   this.route('tools');
+  this.route('get-started');
 });
 
 export default Router;
