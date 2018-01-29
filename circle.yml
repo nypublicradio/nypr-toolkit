@@ -18,6 +18,16 @@ jobs:
           paths:
             - ./node_modules
 
+      - restore_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
+      - run:
+          name: Install bower dependencies
+          command: bower i
+      - save_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
+          paths:
+            - ./bower_components
+
   test:
     docker:
       - image: circleci/node:8.7-browsers
@@ -28,6 +38,8 @@ jobs:
       - checkout
       - restore_cache:
           key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+      - restore_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
       - run:
           name: Test
           command: ./node_modules/ember-cli/bin/ember test
@@ -41,6 +53,8 @@ jobs:
       - checkout
       - restore_cache:
           key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+      - restore_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
       - run:
           name: Deploy to S3
           command: |
