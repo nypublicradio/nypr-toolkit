@@ -3,3 +3,27 @@
   font-size: 12px;
   line-height: 2.25;
 }
+
+@mixin page-title-display {
+  font-size: 50px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+}
+
+@mixin section-head-display {
+  font-size: 30px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+}
+
+@mixin sub-head-display {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+}
+
+@mixin page-copy {
+  font-size: 18px;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+}

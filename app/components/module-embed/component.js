@@ -6,17 +6,22 @@ import Changeset from 'ember-changeset';
 export default Component.extend({
   tagName: 'section',
   classNames: ['module-embed'],
-  
-  params: {},
-  
+
+  // if params are passed in, use those
+  // otherwise set a new blank object in init so state isn't shared
+  params: null,
+
   client: service('window-messenger-client'),
-  
+
   init() {
     this._super(...arguments);
-    let { params, validations } = this.getProperties('params', 'validations');
+    if (!this.get('params')) {
+      this.set('params', {});
+    }
+    let { validations, params } = this.getProperties('params', 'validations');
     this.set('changeset', new Changeset(params, lookupValidator(validations), validations, { skipValidate: true }));
   },
-  
+
   actions: {
     register(name, src, element) {
       this.set('src', src);
@@ -24,11 +29,11 @@ export default Component.extend({
       this.get('client').set(`targetOriginMap.${name}`, src);
       this.get('client').addTarget(name, element.contentWindow);
     },
-    
+
     postMessage(key, value) {
       this.get('client').fetch(`${this.get('name')}:update`, { [key]: value });
     },
-    
+
     generate() {
       let changeset = this.get('changeset');
       changeset.validate().then(() => {

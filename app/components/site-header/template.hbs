@@ -1,0 +1,17 @@
+<div class="site-header__body">
+  <div class="site-header__left">
+    <div class="site-icon">
+      NYPR Engagement Toolkit
+    </div>
+  </div>
+
+  <div class="site-header__right">
+    <nav class="site-links">
+      <ul class="site-links__list">
+        {{yield (hash
+          link=(component 'site-header/link')
+        )}}
+      </ul>
+    </nav>
+  </div>
+</div>

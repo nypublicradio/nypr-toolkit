@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600|Oswald:600');
 
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
@@ -8,11 +8,13 @@
 }
 
 @import "base";
+@import "layout-and-text";
 @import "components/module-embed";
 @import "components/embed-dialog";
 @import "components/messaging-frame";
 @import "components/labelled-input";
 @import "components/copy-block";
+@import "components/site-header";
 
 @import "mixins/text";
 
