@@ -21,11 +21,12 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    
+
     embeds: {
       callToAction: process.env.CALL_TO_ACTION,
       newsletterSignup: process.env.NEWSLETTER_SIGNUP
-    }
+    },
+    themesIndex: process.env.THEMES
   };
 
   if (environment === 'development') {
