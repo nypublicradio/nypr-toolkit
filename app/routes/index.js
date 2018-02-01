@@ -6,7 +6,7 @@ let { embeds, themesIndex } = config;
 
 export default Route.extend({
   redirect() {
-    this.transitionTo('get-started');
+    // this.transitionTo('get-started');
   },
   model() {
     return fetch(themesIndex)
