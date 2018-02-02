@@ -18,11 +18,10 @@ export default Component.extend({
   },
 
   actions: {
-    register(name, src, element) {
+    register(name, src, frame) {
       this.set('src', src);
       this.set('name', name);
-      this.get('client').set(`targetOriginMap.${name}`, src);
-      this.get('client').addTarget(name, element.contentWindow);
+      this.set('frame', frame);
     },
 
     postMessage(key, value) {
