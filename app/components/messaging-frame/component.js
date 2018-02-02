@@ -14,11 +14,11 @@ export default Component.extend({
   didInsertElement() {
     let src = get(this, 'src');
     let register = get(this, 'register');
-    if (src) {
+    if (src && register) {
       let parent = new pym.Parent(this.get('targetId'), src);
-      if (register) {
-        register(get(this, 'name'), src, parent.iframe);
-      }
+      parent.onMessage('mounted', () => {
+        register(name, src, parent);
+      });
     }
   },
   
