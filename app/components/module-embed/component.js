@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 
@@ -8,8 +7,6 @@ export default Component.extend({
   classNames: ['module-embed'],
 
   params: {},
-
-  client: service('window-messenger-client'),
 
   init() {
     this._super(...arguments);
