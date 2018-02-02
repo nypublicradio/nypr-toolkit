@@ -26,16 +26,23 @@ test('it renders', function(assert) {
   assert.ok(find('.messaging-frame'), 'it renders');
 });
 
-test('it registers with pym if there is a src', function() {
-  this.mock(pym).expects('Parent').once().withArgs('idFoo', 'srcFoo');
-  
-  this.render(hbs`{{messaging-frame targetId='idFoo' src='srcFoo'}}`);
+test('it registers with pym if there is a src and register function', function() {
+  this.set('register', () => {});
+  this.mock(pym)
+    .expects('Parent')
+    .once()
+    .withArgs('idFoo', 'srcFoo')
+    .returns({onMessage() {}});
+
+  this.render(hbs`{{messaging-frame targetId='idFoo' src='srcFoo' register=register}}`);
 })
 
 test('it registers with the parent context if provided a register function', function() {
-  this.stub(pym, 'Parent').returns({iframe: 'el'});
-  let mock = this.mock().once().withArgs('foo-name', 'srcFoo', 'el');
+  let parent = {onMessage(type, fn) { fn() }};
+  this.stub(pym, 'Parent')
+    .returns(parent);
+  let mock = this.mock().once().withArgs('foo-name', 'srcFoo', parent);
   this.set('register', mock);
-  
+
   this.render(hbs`{{messaging-frame src='srcFoo' register=register name='foo-name'}}`);
 });
