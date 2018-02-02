@@ -1,17 +1,35 @@
 import Component from '@ember/component';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
+import { bool } from '@ember/object/computed';
+import { later } from '@ember/runloop';
+
+const { assign } = Object;
 
 export default Component.extend({
   tagName: 'section',
   classNames: ['module-embed'],
 
+  queue:  null,
   params: {},
+  registered: bool('frame'),
 
   init() {
     this._super(...arguments);
     let { params, validations } = this.getProperties('params', 'validations');
     this.set('changeset', new Changeset(params, lookupValidator(validations), validations, { skipValidate: true }));
+
+    this.set('queue', []);
+  },
+
+  flushQueue() {
+    if (this.get('registered')) {
+      let flushed = this.get('queue').reduce((flush, datum) => assign(flush, datum), {});
+      this.get('frame').sendMessage('incoming', JSON.stringify(flushed));
+      this.set('queue', []);
+    } else {
+      later(this, 'flushQueue', 50);
+    }
   },
 
   actions: {
@@ -22,7 +40,9 @@ export default Component.extend({
     },
 
     postMessage(key, value) {
-      this.get('client').fetch(`${this.get('name')}:update`, { [key]: value });
+      let data = {[key]: value};
+      this.get('queue').pushObject(data);
+      this.flushQueue();
     },
 
     generate() {
