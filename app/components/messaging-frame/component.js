@@ -6,13 +6,14 @@ import pym from 'pym';
 
 export default Component.extend({
   classNames:        ['messaging-frame'],
-  
+
   targetId: computed('src', function() {
     return guidFor(this.get('src'));
   }),
-  
+
   didInsertElement() {
-    let src = get(this, 'src');
+    let src      = get(this, 'src');
+    let name     = get(this, 'name');
     let register = get(this, 'register');
     if (src && register) {
       let parent = new pym.Parent(this.get('targetId'), src);
@@ -21,7 +22,7 @@ export default Component.extend({
       });
     }
   },
-  
+
   actions: {
     expand(value) {
       this.set('isWide', value);
