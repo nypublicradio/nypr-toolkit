@@ -6,10 +6,10 @@
   border-radius: 0;
   padding: 0;
   background: none;
-  
+
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
-  
+
   &[disabled] {
     cursor: default;
   }
@@ -17,10 +17,22 @@
 
 @mixin blank-btn {
   @include btn;
-  
+
   &:focus,
   &:active {
     outline: none;
     border-bottom: 1px solid $gray;
   }
+}
+
+@mixin teal-btn {
+  @include btn;
+  background-color: $teal;
+  color: white;
+}
+
+@mixin block-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
 }
