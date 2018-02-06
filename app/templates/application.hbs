@@ -2,3 +2,7 @@
   <h1 class="site-title">NYPR Engagement Toolkit</h1>
 </div>
 {{outlet}}
+
+{{#if (not isStaff)}}
+  {{auth-dialog onSubmit=(action 'authenticate')}}
+{{/if}}
