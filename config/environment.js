@@ -50,6 +50,10 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
 
     ENV.adminRoot = 'http://example.com/admin'
+    ENV.embeds = {
+      callToAction: '',
+      newsletterSignup: ''
+    }
   }
 
   if (environment === 'production') {
