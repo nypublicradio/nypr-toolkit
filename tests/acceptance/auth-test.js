@@ -26,8 +26,11 @@ test('can authenticate', function(assert) {
   assert.expect(3);
   const USER = 'foo';
   const PW = 'bar';
-  server.post(`${config.adminRoot}/api/v1/accounts/login/`, (schema, request) => {
-    let params = JSON.parse(request.requestBody);
+  server.post(`${config.adminRoot}/api/v1/accounts/login/`, (schema, {requestBody}) => {
+    let params = requestBody.split('&').map(qp => qp.split('=')).reduce((obj, [k, v]) => {
+      obj[k] = v;
+      return obj;
+    }, {});
     assert.equal(params.username, USER, 'should send username');
     assert.equal(params.password, PW, 'should send password');
     return {success: true};
