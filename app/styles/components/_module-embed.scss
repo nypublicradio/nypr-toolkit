@@ -28,7 +28,7 @@
 .module-embed__column {
   flex: 0 1 48%;
   margin-bottom: 25px;
-  
+
   &.is-wide {
     flex-basis: 100%;
   }
@@ -40,11 +40,6 @@
 }
 
 .module-embed__button {
-  @include btn;
-  padding: 15px;
-  background-color: $teal;
-  color: white;
-  
-  display: block;
-  width: 100%;
+  @include teal-btn;
+  @include block-btn;
 }
