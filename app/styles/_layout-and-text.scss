@@ -4,6 +4,8 @@
 .l-page {
   max-width: 730px;
   padding: 0 15px 15px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .l-page > h1 {
@@ -29,4 +31,25 @@
 
 .l-page > blockquote {
   font-style: oblique;
+}
+
+.l-header {
+  text-align: center;
+}
+
+.site-title {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.l-footer {
+  padding: 35px 10px;
+  text-align: center;
+  background: $lightgray;
+
+  > a {
+    color: $gray;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
 }
