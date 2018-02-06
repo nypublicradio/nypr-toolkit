@@ -1,0 +1,67 @@
+<div class="l-page">
+
+  {{#module-embed validations=CTAValidations as |embed|}}
+    {{#embed.header as |header|}}
+      {{#header.title}}<a name="cta">Call-to-Action Tool</a>{{/header.title}}
+
+      {{#header.blurb}}
+        Contains a headline, a short blurb, and an optional call-to-action button. Use this to encourage users to take a survey, join a Facebook group, post with a particular hashtag, etc.
+      {{/header.blurb}}
+    {{/embed.header}}
+
+    {{#embed.column as |expand|}}
+      <span class="iframe-label">Preview</span>
+      {{embed.iframe src=model.callToAction name="call-to-action" expand=expand}}
+    {{/embed.column}}
+
+    {{#embed.column}}
+      {{embed.input key='headline' changeset=embed.changeset}}
+
+      {{#embed.input key='summary' changeset=embed.changeset as |input|}}
+        {{#input.label}}
+          Short blurb
+        {{/input.label}}
+        {{input.field}}
+      {{/embed.input}}
+
+      {{#embed.input key='callToAction' changeset=embed.changeset as |input|}}
+        {{#input.label}}
+          Button text (if left blank, no button will appear)
+        {{/input.label}}
+        {{input.field}}
+      {{/embed.input}}
+
+      {{#embed.input key='url' changeset=embed.changeset as |input|}}
+        {{#input.label}}
+          URL for the button
+        {{/input.label}}
+        {{input.field placeholder="http://website.com"}}
+      {{/embed.input}}
+
+      {{embed.generateButton}}
+
+    {{/embed.column}}
+  {{/module-embed}}
+
+  <hr />
+
+  {{#module-embed validations=NewsletterValidations as |embed|}}
+    {{#embed.header as |header|}}
+      {{#header.title}}<a name="newsletter">Newsletter Sign-up Tool</a>{{/header.title}}
+      {{#header.blurb}}
+        An easy way to quickly let users sign up for a mailing list.
+      {{/header.blurb}}
+    {{/embed.header}}
+
+    {{#embed.column as |expand|}}
+      {{embed.iframe src=model.newsletterSignup name="newsletter-signup" expand=expand}}
+    {{/embed.column}}
+
+    {{#embed.column}}
+      {{embed.input key='headline' label='Headline' changeset=embed.changeset}}
+      {{embed.input key='mailchimpId' label='Mailchimp ID' changeset=embed.changeset}}
+
+      {{embed.generateButton}}
+    {{/embed.column}}
+  {{/module-embed}}
+</div>
