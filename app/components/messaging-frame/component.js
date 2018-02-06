@@ -18,7 +18,9 @@ export default Component.extend({
     if (src && register) {
       let parent = new pym.Parent(this.get('targetId'), src);
       parent.onMessage('mounted', () => {
-        register(name, src, parent);
+        if (this.element) { // prevent against test failures
+          register(name, src, parent);
+        }
       });
     }
   },
