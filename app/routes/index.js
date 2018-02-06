@@ -9,7 +9,12 @@ export default Route.extend({
     // this.transitionTo('get-started');
   },
   model() {
-    return fetch(themesIndex)
-      .then(r => r.json()).then(themes => ({themes, embeds}));
-  }
+    return fetch(themesIndex).then(r => r.json());
+  },
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('embeds', embeds);
+    controller.set('themes', model);
+  },
+
 });
