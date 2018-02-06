@@ -1,8 +1,21 @@
 import test from 'ember-sinon-qunit/test-support/test';
 import moduleForAcceptance from 'nypr-toolkit/tests/helpers/module-for-acceptance';
 import config from 'nypr-toolkit/config/environment';
+import pym from 'pym';
+import sinon from 'sinon';
 
-moduleForAcceptance('Auth');
+moduleForAcceptance('Auth', {
+  beforeEach() {
+    sinon.stub(pym, 'Parent').returns({
+      onMessage: sinon.stub().callsArg(1),
+      sendMessage() {}
+    });
+  },
+  afterEach() {
+    pym.Parent.restore();
+    server.shutdown();
+  }
+});
 
 test('unauthorized access', function(assert) {
   visit('/');
