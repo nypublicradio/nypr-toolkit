@@ -1,4 +1,4 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { find } from 'ember-native-dom-helpers';
 
@@ -6,7 +6,7 @@ moduleForComponent('labelled-dropdown', 'Integration | Component | labelled drop
   integration: true
 });
 
-test('it renders', function(assert) {
+skip('it renders', function(assert) {
   assert.expect(3);
 
   this.render(hbs`{{labelled-dropdown}}`);
