@@ -6,3 +6,7 @@
 <div class="l-page">
   {{outlet}}
 </div>
+
+{{#if (not isStaff)}}
+  {{auth-dialog onSubmit=(action 'authenticate')}}
+{{/if}}
