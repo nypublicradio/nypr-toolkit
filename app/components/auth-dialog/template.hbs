@@ -7,6 +7,8 @@
 {{#with (changeset (hash username=username password=password) validations) as |changeset|}}
 <form class="auth-form" {{action callSubmit changeset on='submit'}}>
 
+  <h3 class="auth-dialog__title">Please login with your CMS credentials</h3>
+
   <label class="auth-dialog__label">
     Username
     {{input
