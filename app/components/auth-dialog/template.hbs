@@ -1,0 +1,61 @@
+{{#modal-dialog
+  targetAttachment="center"
+  translucentOverlay=true
+  containerClass="auth-dialog"
+  overlayClass="auth-dialog__overlay"
+}}
+{{#with (changeset (hash username=username password=password) validations) as |changeset|}}
+<form class="auth-form" {{action callSubmit changeset on='submit'}}>
+
+  <label class="auth-dialog__label">
+    Username
+    {{input
+      name='username'
+      value=(get changeset 'username')
+      class='auth-dialog__input'
+      input=(action 'validateProperty' changeset 'username')
+    }}
+
+  {{#if changeset.error.username}}
+    <ul class="auth-dialog__errors">
+      {{#each changeset.error.username.validation as |message|}}
+      <li>
+        {{message}}
+      </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+  </label>
+
+  <label class="auth-dialog__label">
+    Password
+    {{input
+      name='password'
+      value=(get changeset 'password')
+      class='auth-dialog__input'
+      type='password'
+      input=(action 'validateProperty' changeset 'password')
+    }}
+
+  {{#if changeset.error.password}}
+    <ul class="auth-dialog__errors">
+      {{#each changeset.error.password.validation as |message|}}
+      <li>
+        {{message}}
+      </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+  </label>
+
+
+  {{input
+    type='submit'
+    value='Submit'
+    class='auth-dialog__submit'
+    disabled=changeset.isInvalid
+  }}
+
+</form>
+{{/with}}
+{{/modal-dialog}}
