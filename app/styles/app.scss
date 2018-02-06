@@ -12,9 +12,11 @@
 @import "components/embed-dialog";
 @import "components/messaging-frame";
 @import "components/labelled-input";
+@import "components/labelled-dropdown";
 @import "components/copy-block";
 
 @import "mixins/text";
+@import "mixins/vars";
 
 .l-page {
   max-width: 1000px;
@@ -34,3 +36,11 @@
 .iframe-label {
   @include small-text-display;
 }
+
+$ember-power-select-default-border-radius: 0;
+$ember-power-select-border-color: $mediumgray;
+$ember-power-select-trigger-icon-color: $teal;
+$ember-power-select-text-color: $teal;
+$ember-power-select-trigger-ltr-padding: 6px 30px 6px 0px;
+
+@import "ember-power-select";

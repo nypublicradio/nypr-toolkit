@@ -11,10 +11,12 @@
 
     {{#embed.column as |expand|}}
       <span class="iframe-label">Preview</span>
-      {{embed.iframe src=model.callToAction name="call-to-action" expand=expand}}
+      {{embed.iframe src=model.embeds.callToAction name="call-to-action" expand=expand}}
     {{/embed.column}}
 
     {{#embed.column}}
+      {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
+
       {{embed.input key='headline' changeset=embed.changeset}}
 
       {{#embed.input key='summary' changeset=embed.changeset as |input|}}
@@ -54,10 +56,11 @@
     {{/embed.header}}
 
     {{#embed.column as |expand|}}
-      {{embed.iframe src=model.newsletterSignup name="newsletter-signup" expand=expand}}
+      {{embed.iframe src=model.embeds.newsletterSignup name="newsletter-signup" expand=expand}}
     {{/embed.column}}
 
     {{#embed.column}}
+      {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
       {{embed.input key='headline' label='Headline' changeset=embed.changeset}}
       {{embed.input key='mailchimpId' label='Mailchimp ID' changeset=embed.changeset}}
 

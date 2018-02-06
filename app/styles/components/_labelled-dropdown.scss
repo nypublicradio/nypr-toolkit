@@ -1,0 +1,18 @@
+@import "../mixins/text";
+
+.labelled-dropdown {
+  margin-bottom: 25px;
+  cursor: pointer;
+
+  .ember-power-select-status-icon {
+    right: 15px;
+  }
+
+  .ember-power-select-option {
+    padding: 9px 8px;
+  }
+}
+
+.labelled-dropdown__label {
+  @include small-text-display;
+}

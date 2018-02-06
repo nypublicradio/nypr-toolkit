@@ -2,6 +2,7 @@ import { moduleForComponent } from 'ember-qunit';
 import test from 'ember-sinon-qunit/test-support/test';
 import hbs from 'htmlbars-inline-precompile';
 import { find, fillIn, click } from 'ember-native-dom-helpers';
+import pym from 'pym';
 
 moduleForComponent('module-embed', 'Integration | Component | module embed', {
   integration: true
@@ -31,29 +32,32 @@ test('embeds and communicates with iframes', function(assert) {
   const NAME = 'foo-name';
   const SRC = 'foo-src';
   const KEY = 'test-key'
-  let mockClient = {
-    set: this.mock().once().withArgs(`targetOriginMap.${NAME}`, SRC),
-    addTarget: this.mock().once().withArgs(NAME),
-    fetch: this.mock().once().withArgs(`${NAME}:update`, { [KEY]: 'foo' })
+  let mockFrame = {
+    sendMessage: this.mock().once().withArgs('incoming', JSON.stringify({ [KEY]: 'foo' })),
+    onMessage: this.mock().once().withArgs('mounted').callsArg(1)
   };
   this.setProperties({
     name: NAME,
     src: SRC,
-    client: mockClient,
     params: PARAMS,
     key: KEY
   });
-  
+
+  this.mock(pym)
+    .expects('Parent')
+    .once()
+    .returns(mockFrame);
+
   this.render(hbs`
-    {{#module-embed client=client params=params as |embed|}}
+    {{#module-embed params=params as |embed|}}
       {{embed.iframe src=src name=name}}
-      
+
       {{embed.input key=key changeset=embed.changeset}}
-      
+
       {{embed.generateButton}}
     {{/module-embed}}
   `);
-  
+
   fillIn('input', 'foo').then(() => {
     click('button').then(() => {
       assert.equal(PARAMS['test-key'], 'foo')
