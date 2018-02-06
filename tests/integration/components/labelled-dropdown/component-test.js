@@ -1,6 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { find } from 'ember-native-dom-helpers';
+import wait from 'ember-test-helpers/wait';
 
 moduleForComponent('labelled-dropdown', 'Integration | Component | labelled dropdown', {
   integration: true
@@ -24,4 +25,5 @@ test('it renders', function(assert) {
                     changeset=changeset
                     onChange=onChange
                     options=options}}`);
+  return wait();
 });
