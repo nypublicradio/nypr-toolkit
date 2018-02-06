@@ -10,7 +10,7 @@ export default Component.extend({
   tagName: 'section',
   classNames: ['module-embed'],
 
-  queue:  null,
+  queue: null,
   // if params are passed in, use those
   // otherwise set a new blank object in init so state isn't shared
   params: null,

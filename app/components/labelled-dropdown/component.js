@@ -12,7 +12,7 @@ export default LabelledInput.extend({
     if (!option) {
       return;
     }
-    later(() => this.send('onChange', option, 50));
+    later(() => this.send('onChange', option), 50);
   },
 
   actions: {
