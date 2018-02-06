@@ -43,16 +43,7 @@
 
 .site-links__list-item {
   display: flex;
-
-  &:after {
-    content: '|';
-    display: inline-block;
-    margin: 5px 10px;
-  }
-
-  &:last-child:after {
-    content: none;
-  }
+  margin: 5px 15px;
 }
 
 .site-link {
