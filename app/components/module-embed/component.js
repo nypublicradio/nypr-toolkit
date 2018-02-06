@@ -11,12 +11,17 @@ export default Component.extend({
   classNames: ['module-embed'],
 
   queue:  null,
-  params: {},
+  // if params are passed in, use those
+  // otherwise set a new blank object in init so state isn't shared
+  params: null,
   registered: bool('frame'),
 
   init() {
     this._super(...arguments);
-    let { params, validations } = this.getProperties('params', 'validations');
+    if (!this.get('params')) {
+      this.set('params', {});
+    }
+    let { validations, params } = this.getProperties('params', 'validations');
     this.set('changeset', new Changeset(params, lookupValidator(validations), validations, { skipValidate: true }));
 
     this.set('queue', []);
