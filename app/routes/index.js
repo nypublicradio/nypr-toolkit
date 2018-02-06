@@ -2,6 +2,6 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   redirect() {
-    // this.transitionTo('get-started');
+    this.transitionTo('get-started');
   }
 });
