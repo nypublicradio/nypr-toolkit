@@ -20,7 +20,8 @@ export default Controller.extend({
       }).then(r => r.json())
         .then(({ success }) => {
           if (success) {
-            this.transitionToRoute('get-started');
+            this.get('session').staffAuth()
+              .then(() => this.transitionToRoute('get-started'));
           }
         });
     }
