@@ -1,42 +1,34 @@
-import { skip } from 'qunit';
+import test from 'ember-sinon-qunit/test-support/test';
 import moduleForAcceptance from 'nypr-toolkit/tests/helpers/module-for-acceptance';
 import config from 'nypr-toolkit/config/environment';
-import pym from 'pym';
-import sinon from 'sinon';
 
 moduleForAcceptance('Auth', {
- beforeEach() {
-   sinon.stub(pym, 'Parent').returns({
-     onMessage: sinon.stub().callsArg(1),
-     sendMessage() {}
-   });
- },
- afterEach() {
-   pym.Parent.restore();
-   server.shutdown();
- }
+  afterEach() {
+    server.shutdown();
+  }
 });
 
-skip('unauthorized access', function(assert) {
+test('unauthorized access', function(assert) {
   visit('/');
 
   andThen(function() {
-    assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/login');
     assert.ok(find('.auth-dialog').length, 'auth-dialog should render');
   });
 });
 
-skip('auth modal', function(assert) {
+test('auth route', function(assert) {
   server.get(`${config.adminRoot}/api/v1/is_logged_in/`, () => ({is_staff: true}));
-  visit('/');
+  visit('/get-started');
 
   andThen(() => {
+    assert.equal(currentURL(), '/get-started');
     assert.notOk(find('.auth-dialog').length, 'auth-dialog should not render for authenticated users');
   });
 });
 
-skip('can authenticate', function(assert) {
-  assert.expect(3);
+test('can authenticate', function(assert) {
+  assert.expect(4);
   const USER = 'foo';
   const PW = 'bar';
   server.post(`${config.adminRoot}/api/v1/accounts/login/`, (schema, {requestBody}) => {
@@ -49,7 +41,7 @@ skip('can authenticate', function(assert) {
     return {success: true};
   });
 
-  visit('/');
+  visit('/login');
 
   andThen(() => {
     fillIn('.auth-dialog__input[name=username]', USER);
@@ -61,5 +53,8 @@ skip('can authenticate', function(assert) {
     click('.auth-dialog__submit');
   });
 
-  andThen(() => assert.notOk(find('.auth-dialog').length, 'auth-dialog should disappear after authenticating'));
-})
+  andThen(() => {
+    assert.equal(currentURL(), '/get-started');
+    assert.notOk(find('.auth-dialog').length, 'auth-dialog should disappear after authenticating')
+  });
+});

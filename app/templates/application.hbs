@@ -1,8 +1,10 @@
+{{#if isStaff}}
 {{#site-header as |nav|}}
   {{nav.link 'Get Started' 'get-started'}}
   {{nav.link 'Tools' 'tools'}}
   {{nav.link 'Create' 'create'}}
 {{/site-header}}
+{{/if}}
 
 <div class="l-page">
   {{outlet}}

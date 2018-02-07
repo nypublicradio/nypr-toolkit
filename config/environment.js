@@ -27,7 +27,7 @@ module.exports = function(environment) {
       newsletterSignup: process.env.NEWSLETTER_SIGNUP
     },
     themesIndex: process.env.THEMES,
-    adminRoot: process.env.ADMIN_ROOT
+    adminRoot: process.env.ADMIN_ROOT,
   };
 
   if (environment === 'development') {
@@ -50,10 +50,6 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
 
     ENV.adminRoot = 'http://example.com/admin'
-    ENV.embeds = {
-      callToAction: '',
-      newsletterSignup: ''
-    }
   }
 
   if (environment === 'production') {

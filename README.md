@@ -2,6 +2,12 @@
 
 The NYPR Toolkit site provides a interface for customizing engagement modules.
 
+## Static Content
+
+Templates can be found in `apps/templates/`. The text is rendered using a version of Markdown called **CommonMark**.
+
+[See here for more info on the CommonMark syntax](http://commonmark.org/help/)
+
 ## Development
 
 To develop interactively with other modules, you'll need to add URLs that point to live instances of each module. You can point to the demo versions or spin up local copies and point to those.

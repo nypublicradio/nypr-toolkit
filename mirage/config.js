@@ -28,7 +28,4 @@ export default function() {
 
   this.urlPrefix = config.adminRoot;
   this.get('/api/v1/is_logged_in/', () => ({is_staff: false}));
-
-  this.urlPrefix = '';
-  this.get(config.themesIndex, () => [{label: 'WNYC Studios', value: 'wnyc-studios'}]);
 }
