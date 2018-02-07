@@ -14,9 +14,11 @@ test('it exists', function(assert) {
 test('it calls staffAuth in the beforeModel hook', function() {
   let route = this.subject({
     session: {
-      staffAuth: this.mock('staffAuth').once()
+      staffAuth: this.mock('staffAuth').once().resolves({is_staff: false})
     }
   });
+
+  this.mock(route).expects('transitionTo').withArgs('login');
 
   route.beforeModel();
 })

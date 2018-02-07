@@ -5,6 +5,11 @@ export default Route.extend({
   session: service(),
 
   beforeModel() {
-    return this.get('session').staffAuth();
+    return this.get('session').staffAuth()
+      .then(({ is_staff }) => {
+        if (!is_staff) {
+          this.transitionTo('login');
+        }
+      });
   }
 });
