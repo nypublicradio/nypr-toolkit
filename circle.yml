@@ -9,16 +9,6 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm i --no-package-lock
-      - save_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-
-      - restore_cache:
           key: bower-deps-{{ checksum "bower.json" }}
       - run:
           name: Install bower dependencies
@@ -29,6 +19,16 @@ jobs:
           key: bower-deps-{{ checksum "bower.json" }}
           paths:
             - ./bower_components
+
+      - restore_cache:
+          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm i --no-package-lock
+      - save_cache:
+          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
 
   test:
     docker:
