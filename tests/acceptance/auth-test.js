@@ -2,28 +2,33 @@ import test from 'ember-sinon-qunit/test-support/test';
 import moduleForAcceptance from 'nypr-toolkit/tests/helpers/module-for-acceptance';
 import config from 'nypr-toolkit/config/environment';
 
-moduleForAcceptance('Auth');
+moduleForAcceptance('Auth', {
+  afterEach() {
+    server.shutdown();
+  }
+});
 
 test('unauthorized access', function(assert) {
   visit('/');
 
   andThen(function() {
-    assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/login');
     assert.ok(find('.auth-dialog').length, 'auth-dialog should render');
   });
 });
 
-test('auth modal', function(assert) {
+test('auth route', function(assert) {
   server.get(`${config.adminRoot}/api/v1/is_logged_in/`, () => ({is_staff: true}));
-  visit('/');
+  visit('/get-started');
 
   andThen(() => {
+    assert.equal(currentURL(), '/get-started');
     assert.notOk(find('.auth-dialog').length, 'auth-dialog should not render for authenticated users');
   });
 });
 
 test('can authenticate', function(assert) {
-  assert.expect(3);
+  assert.expect(4);
   const USER = 'foo';
   const PW = 'bar';
   server.post(`${config.adminRoot}/api/v1/accounts/login/`, (schema, {requestBody}) => {
@@ -36,7 +41,7 @@ test('can authenticate', function(assert) {
     return {success: true};
   });
 
-  visit('/');
+  visit('/login');
 
   andThen(() => {
     fillIn('.auth-dialog__input[name=username]', USER);
@@ -48,5 +53,8 @@ test('can authenticate', function(assert) {
     click('.auth-dialog__submit');
   });
 
-  andThen(() => assert.notOk(find('.auth-dialog').length, 'auth-dialog should disappear after authenticating'));
-})
+  andThen(() => {
+    assert.equal(currentURL(), '/get-started');
+    assert.notOk(find('.auth-dialog').length, 'auth-dialog should disappear after authenticating')
+  });
+});
