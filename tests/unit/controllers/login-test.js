@@ -11,11 +11,15 @@ test('it exists', function(assert) {
   assert.ok(controller);
 });
 
-test('it calls staffAuth on successful authentication', function() {
+test('it calls staffAuth and transitions on successful authentication', function() {
   this.mock(fetch).expects('default').once()
     .resolves({json: this.mock('json').resolves({success: true})});
 
-  let controller = this.subject();
+  let controller = this.subject({
+    session: {
+      staffAuth: this.mock('staffAuth').once().resolves()
+    }
+  });
   this.mock(controller).expects('transitionToRoute').withArgs('get-started');
 
   controller.send('authenticate', 'user', 'password');
