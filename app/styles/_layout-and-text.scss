@@ -2,7 +2,7 @@
 @import "mixins/text";
 
 .l-page {
-  max-width: 730px;
+  max-width: 780px;
   padding: 0 15px 15px;
   width: 100%;
   margin: 0 auto;
@@ -27,6 +27,7 @@
 .l-page a[href] {
   color: $teal;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .l-page > blockquote {
