@@ -26,7 +26,8 @@ module.exports = function(environment) {
       callToAction: process.env.CALL_TO_ACTION,
       newsletterSignup: process.env.NEWSLETTER_SIGNUP
     },
-    themesIndex: process.env.THEMES
+    themesIndex: process.env.THEMES,
+    adminRoot: process.env.ADMIN_ROOT,
   };
 
   if (environment === 'development') {
@@ -47,6 +48,8 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV.adminRoot = 'http://example.com/admin'
   }
 
   if (environment === 'production') {
