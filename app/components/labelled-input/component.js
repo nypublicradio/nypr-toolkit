@@ -1,10 +1,10 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
-export default Component.extend({
+const LabelledInput = Component.extend({
   tagName:    'label',
   classNames: ['labelled-input'],
-  
+
   key: '',
   label: computed('key', function() {
     let key = this.get('key');
@@ -13,3 +13,9 @@ export default Component.extend({
 
   onInput() {}
 });
+
+LabelledInput.reopenClass({
+  positionalParams: ['key', 'label']
+});
+
+export default LabelledInput;

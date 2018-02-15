@@ -18,9 +18,7 @@
     {{embed.input key='headline' changeset=embed.changeset}}
 
     {{#embed.input key='summary' changeset=embed.changeset as |input|}}
-      {{#input.label}}
-        Short blurb
-      {{/input.label}}
+      {{input.label 'Short Blurb'}}
       {{input.field}}
     {{/embed.input}}
 
@@ -58,9 +56,9 @@
   {{/embed.column}}
 
   {{#embed.column}}
-    {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
-    {{embed.input key='headline' label='Headline' changeset=embed.changeset}}
-    {{embed.dropdown key='mailchimpId' label='Mailchimp List' changeset=embed.changeset options=model.mailchimpLists searchEnabled=true placeholder='---'}}
+    {{embed.dropdown 'brand' changeset=embed.changeset options=model.themes}}
+    {{embed.input 'headline' 'Headline' changeset=embed.changeset}}
+    {{embed.dropdown 'mailchimpId' 'Mailchimp List' changeset=embed.changeset options=model.mailchimpLists searchEnabled=true placeholder='---'}}
 
     {{embed.generateButton}}
   {{/embed.column}}

@@ -25,11 +25,11 @@ test('it renders', function(assert) {
 });
 
 test('it transforms camelized keys to a capitalized label', function(assert) {
-  this.render(hbs`{{labelled-input key='fooBar'}}`);
+  this.render(hbs`{{labelled-input 'fooBar'}}`);
   assert.equal(find('.labelled-input').textContent.trim(), 'Foo Bar');
 });
 
 test('it accepts a label param', function(assert) {
-  this.render(hbs`{{labelled-input key='hello' label='world'}}`);
+  this.render(hbs`{{labelled-input 'hello' 'world'}}`);
   assert.equal(find('.labelled-input').textContent.trim(), 'world');
 })
