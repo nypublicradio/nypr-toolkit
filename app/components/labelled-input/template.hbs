@@ -1,6 +1,7 @@
 {{#if hasBlock}}
   {{yield (hash
     field=(component 'labelled-input/field'
+           placeholder=placeholder
            class="labelled-input__input"
            hasError=(if (get changeset.error key) true)
            value=(get changeset key)
@@ -17,6 +18,7 @@
     hasError=(if (get changeset.error key) true)
     value=(get changeset key)
     input=(action onInput key (get changeset key))
+    placeholder=placeholder
     id=(concat elementId '-input')}}
 {{/if}}
 
