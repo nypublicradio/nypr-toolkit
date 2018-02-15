@@ -1,0 +1,7 @@
+{{yield (hash
+  add=(component 'list-input/add-button' add=(action add))
+  inputs=(component 'list-input/inputs'
+         inputs=inputs
+         changeset=values
+         onInput=(action combineValues))
+)}}
