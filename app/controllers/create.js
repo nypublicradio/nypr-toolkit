@@ -4,5 +4,5 @@ import NewsletterValidations from '../validations/newsletter';
 
 export default Controller.extend({
   CTAValidations,
-  NewsletterValidations
+  NewsletterValidations,
 });
