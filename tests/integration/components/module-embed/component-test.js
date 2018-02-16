@@ -78,7 +78,7 @@ test('embeds and communicates with iframes', function(assert) {
   return fillIn('.text input', 'foo')
     .then(() => fillIn(firstListInput, 'bar')
       .then(() => {
-        assert.notEqual(firstListInput.value, secondListInput.value);
+        assert.notEqual(firstListInput.value, secondListInput.value, 'inputs should not be in sync');
       }).then(() => fillIn(secondListInput, 'baz')
         .then(() => click('.module-embed__button').then(() => {
           assert.equal(firstListInput.value, 'bar', 'transform does not change the value of the field');
@@ -88,7 +88,7 @@ test('embeds and communicates with iframes', function(assert) {
           let [inputCall, arrayCall1, arrayCall2] = mockCalls;
 
           assert.equal(inputCall.args[0], 'incoming');
-          assert.equal(inputCall.args[1], JSON.stringify({ [KEY]: 'foo' }));
+          assert.equal(inputCall.args[1], JSON.stringify({ [KEY]: 'foo' }), 'first call should send plain input value');
 
           assert.equal(arrayCall1.args[0], 'incoming');
           assert.equal(arrayCall1.args[1], JSON.stringify({ [ARRAY_KEY]: 'BAR' }), 'array keys should be transformed');
