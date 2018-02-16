@@ -5,3 +5,15 @@
          changeset=listChangeset
          onInput=(action combineValues))
 )}}
+
+{{#if (get changeset.error key)}}
+  <ul class="labelled-input__errors">
+    {{#each (get (get changeset.error key) 'validation') as |message|}}
+      {{#if message}}
+      <li>
+        {{message}}
+      </li>
+      {{/if}}
+    {{/each}}
+  </ul>
+{{/if}}
