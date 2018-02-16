@@ -66,7 +66,7 @@
 
 <hr />
 
-{{#module-embed as |embed|}}
+{{#module-embed validations=PlaylistValidations as |embed|}}
   {{#embed.header as |header|}}
     {{#header.title}}<a name="playlist">Playlist</a>{{/header.title}}
     {{#header.blurb}}
@@ -82,12 +82,18 @@
     {{embed.input 'title' 'Playlist Title (max 45 characters)' changeset=embed.changeset}}
     {{embed.input 'blurb' 'Short blurb (optional, max 110 characters)' changeset=embed.changeset}}
 
-    {{#embed.list inputs=2 changeset=embed.changeset key='stories' as |list|}}
-      {{#list.inputs as |inputs|}}
-        {{inputs.input label='Story URL' transform=(action 'transformStoryURLs')}}
-      {{/list.inputs}}
+    {{#embed.list
+       inputs=2
+       changeset=embed.changeset
+       key='stories'
+       inputValidation=(action validateStoryItem)
+       as |list|}}
 
-      {{list.add '+ Add more audio to the playlist'}}
+        {{#list.inputs as |inputs|}}
+          {{inputs.input label='Story URL' transform=(action transformStoryURLs)}}
+        {{/list.inputs}}
+
+        {{list.add '+ Add more audio to the playlist'}}
     {{/embed.list}}
 
     {{embed.generateButton}}
