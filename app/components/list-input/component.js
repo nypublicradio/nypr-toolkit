@@ -15,7 +15,7 @@ export default Component.extend({
   add() {
     this.incrementProperty('inputs');
   },
-  combineValues(index, _, value) {
+  combineValues(index, _, value, transform) {
     let key     = get(this, 'key');
     let onInput = get(this, 'onInput');
     let values = get(this, 'values');
@@ -24,6 +24,9 @@ export default Component.extend({
     values[index] = value;
     set(this, 'values', values);
 
+    if (transform) {
+      values = values.map(transform);
+    }
     let preparedValues = values.join(',');
     set(changeset, key, preparedValues);
 
