@@ -23,9 +23,13 @@ export default Controller.extend({
   },
 
   validateStoryItem({ newValue }) {
-    if (newValue.startsWith('/')) {
-      return ['Please enter a story slug or an absolute url'];
-    } else {
+    let message = 'Please enter a story slug or an absolute url';
+    let isURL = newValue.startsWith('http');
+    let isSlug = newValue.match(/[a-z0-9-]+/);
+
+    if (!isSlug && !isURL) {
+      return [message];
+    } else if (isSlug || isURL) {
       return true;
     }
   }
