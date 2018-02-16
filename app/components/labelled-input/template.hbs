@@ -5,7 +5,7 @@
            class="labelled-input__input"
            hasError=(if (get changeset.error key) true)
            value=(get changeset key)
-           input=(action onInput key (get changeset key))
+           input=(action onInput key (get changeset key) transform)
            id=(concat elementId '-input'))
 
     label=(component 'labelled-input/label' label for=(concat elementId '-input'))
@@ -17,7 +17,7 @@
     class="labelled-input__input"
     hasError=(if (get changeset.error key) true)
     value=(get changeset key)
-    input=(action onInput key (get changeset key))
+    input=(action onInput key (get changeset key) transform)
     placeholder=placeholder
     id=(concat elementId '-input')}}
 {{/if}}
