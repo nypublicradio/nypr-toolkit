@@ -1,0 +1,17 @@
+@import "../mixins/vars";
+@import "../mixins/buttons";
+
+.list-input {
+  margin-bottom: 25px;
+
+  > .labelled-input:last-of-type {
+    margin-bottom: 5px;
+  }
+}
+
+.list-input__add {
+  @include blank-btn;
+
+  font-size: 12px;
+  color: $teal;
+}
