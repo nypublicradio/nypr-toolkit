@@ -45,7 +45,8 @@ test('embeds and communicates with iframes', function(assert) {
     src: SRC,
     params: PARAMS,
     key: KEY,
-    arrayKey: ARRAY_KEY
+    arrayKey: ARRAY_KEY,
+    transform: val => val.toUpperCase()
   });
 
   this.mock(pym)
@@ -61,7 +62,7 @@ test('embeds and communicates with iframes', function(assert) {
 
       {{#embed.list inputs=2 changeset=embed.changeset key=arrayKey as |list|}}
         {{#list.inputs as |inputs|}}
-          {{inputs.input}}
+          {{inputs.input transform=transform}}
         {{/list.inputs}}
 
         {{list.add '+ Add more audio to the playlist'}}
@@ -80,6 +81,9 @@ test('embeds and communicates with iframes', function(assert) {
         assert.notEqual(firstListInput.value, secondListInput.value);
       }).then(() => fillIn(secondListInput, 'baz')
         .then(() => click('.module-embed__button').then(() => {
+          assert.equal(firstListInput.value, 'bar', 'transform does not change the value of the field');
+          assert.equal(secondListInput.value, 'baz', 'transform does not change the value of the fields');
+
           let mockCalls = sendMock.getCalls();
           let [inputCall, arrayCall1, arrayCall2] = mockCalls;
 
@@ -87,19 +91,19 @@ test('embeds and communicates with iframes', function(assert) {
           assert.equal(inputCall.args[1], JSON.stringify({ [KEY]: 'foo' }));
 
           assert.equal(arrayCall1.args[0], 'incoming');
-          assert.equal(arrayCall1.args[1], JSON.stringify({ [ARRAY_KEY]: 'bar' }));
+          assert.equal(arrayCall1.args[1], JSON.stringify({ [ARRAY_KEY]: 'BAR' }), 'array keys should be transformed');
 
           assert.equal(arrayCall2.args[0], 'incoming');
-          assert.equal(arrayCall2.args[1], JSON.stringify({ [ARRAY_KEY]: 'bar,baz' }));
+          assert.equal(arrayCall2.args[1], JSON.stringify({ [ARRAY_KEY]: 'BAR,BAZ' }), 'array keys should be transformed');
 
           assert.equal(PARAMS['test-key'], 'foo')
-          assert.equal(PARAMS['array-key'], 'bar,baz');
+          assert.equal(PARAMS['array-key'], 'BAR,BAZ');
 
           let modal = find('.copy-block__input');
-          const EMBED = `
-<div data-pym-src="${SRC}?${KEY}=foo&${ARRAY_KEY}=bar%2Cbaz">Loading...</div>
-<script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
-          `;
+          const EMBED = [
+            `<div data-pym-src="${SRC}?${KEY}=foo&${ARRAY_KEY}=BAR%2CBAZ">Loading...</div>`,
+            `<script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>`
+          ].join('\n');
           assert.equal(modal.textContent.trim(), EMBED.trim(), 'generates expected embed code');
           done();
         })
