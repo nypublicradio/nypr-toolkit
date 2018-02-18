@@ -86,7 +86,7 @@
        inputs=2
        changeset=embed.changeset
        key='stories'
-       inputValidation=(action validateStoryItem)
+       inputValidation=(action slugOrUrl)
        as |list|}}
 
         {{#list.inputs as |inputs|}}
