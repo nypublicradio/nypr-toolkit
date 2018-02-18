@@ -5,7 +5,7 @@ export default function commaListLength({ length = 1, label } = {}) {
     }
     let listified = newValue.split(',');
     if (listified.length < length) {
-      return `Must have more than ${length} ${label}`;
+      return `Must have at least ${length} ${label}`;
     } else {
       return true;
     }
