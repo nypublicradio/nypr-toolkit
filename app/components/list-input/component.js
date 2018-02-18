@@ -27,7 +27,7 @@ export default Component.extend({
     if (transform) {
       values = values.map(transform);
     }
-    let preparedValues = values.join(',');
+    let preparedValues = values.without('').join(',');
     set(changeset, key, preparedValues);
 
     if (onInput) {
