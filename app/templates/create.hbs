@@ -60,7 +60,7 @@
   {{#embed.column}}
     {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
     {{embed.input key='headline' label='Headline' changeset=embed.changeset}}
-    {{embed.input key='mailchimpId' label='Mailchimp ID' changeset=embed.changeset}}
+    {{embed.dropdown key='mailchimpId' label='Mailchimp ID' changeset=embed.changeset options=model.mailchimpLists searchEnabled=true}}
 
     {{embed.generateButton}}
   {{/embed.column}}
