@@ -20,7 +20,7 @@ export default ScrollTo.extend({
         duration: this.get('duration'),
         offset:   this.get('offset'),
         easing:   this.get('easing'),
-        complete: () => window.location.hash = this.get('href')
+        complete: () => history.pushState(null, null, this.get('href'))
       });
     }
 })
