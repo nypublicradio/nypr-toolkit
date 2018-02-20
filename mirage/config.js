@@ -35,6 +35,8 @@ export default function() {
 export function testConfig() {
   this.get('/api/v1/is_logged_in/', () => ({is_staff: false}));
 
+  this.get(config.themesIndex, () => ([]));
+
   this.urlPrefix = config.mailchimpProxy;
   this.get('/lists', () => ({lists: []}));
 }

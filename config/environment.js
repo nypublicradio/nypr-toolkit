@@ -53,6 +53,7 @@ module.exports = function(environment) {
 
     ENV.adminRoot = 'http://example.com/admin';
     ENV.mailchimpProxy = 'http://example.com/mailchimp';
+    ENV.themesIndex = 'http://example.com/themes';
 
     ENV.embeds = {
       callToAction: '/call-to-action',
