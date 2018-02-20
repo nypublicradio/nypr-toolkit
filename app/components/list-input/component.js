@@ -17,10 +17,10 @@ export default Component.extend({
   add() {
     this.incrementProperty('inputs');
   },
-  combineValues(index, _, value, transform) {
+  combineValues(key, value, transform) {
+    key = key.split('_')[0];
     let listChangeset = get(this, 'listChangeset');
     let values = listChangeset.get('changes').map(({value}) => value);
-    let key     = get(this, 'key');
     let onInput = get(this, 'onInput');
     let changeset = get(this, 'changeset');
 

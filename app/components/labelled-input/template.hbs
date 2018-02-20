@@ -6,6 +6,7 @@
            hasError=(if (get changeset.error key) true)
            value=(get changeset key)
            input=(action onInput key (get changeset key) transform)
+           name=key
            id=(concat elementId '-input'))
 
     label=(component 'labelled-input/label' label for=(concat elementId '-input'))
@@ -19,6 +20,7 @@
     value=(get changeset key)
     input=(action onInput key (get changeset key) transform)
     placeholder=placeholder
+    name=key
     id=(concat elementId '-input')}}
 {{/if}}
 
