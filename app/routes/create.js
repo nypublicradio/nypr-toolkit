@@ -11,7 +11,8 @@ export default Route.extend({
       .then(r => r.json());
     let mailchimpLists = fetch(`${mailchimpProxy}/lists?fields=lists.name,lists.id&count=200`)
       .then(r => r.json())
-      .then(({lists}) => lists.map(({name, id}) => ({label: name, value: id})));
+      .then(({lists}) => lists.sort((a, b) => a.name.localeCompare(b.name))
+                              .map(({name, id}) => ({label: name, value: id})));
 
     return RSVP.hash({
       themes,
