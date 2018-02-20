@@ -1,7 +1,7 @@
 <div class="labelled-dropdown__label">{{label}}</div>
 
 {{#power-select
-  searchEnabled=false
+  searchEnabled=searchEnabled
   options=options
   selected=selected
   onchange=(action 'onChange') as |item|}}
