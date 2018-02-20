@@ -5,6 +5,7 @@ import { get } from '@ember/object';
 export default LabelledInput.extend({
   tagName: 'div',
   classNames: ['labelled-dropdown'],
+  searchEnabled: false,
 
   didInsertElement() {
     this._super(...arguments);
