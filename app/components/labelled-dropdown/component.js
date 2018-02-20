@@ -7,6 +7,10 @@ export default LabelledInput.extend({
   classNames: ['labelled-dropdown'],
   searchEnabled: false,
 
+  matcher({ label }, query) {
+    return label.toLowerCase().indexOf(query.toLowerCase());
+  },
+
   didInsertElement() {
     this._super(...arguments);
     let option = get(this, 'options.firstObject');
