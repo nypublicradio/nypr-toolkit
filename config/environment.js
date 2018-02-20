@@ -53,6 +53,12 @@ module.exports = function(environment) {
 
     ENV.adminRoot = 'http://example.com/admin';
     ENV.mailchimpProxy = 'http://example.com/mailchimp';
+
+    ENV.embeds = {
+      callToAction: '/call-to-action',
+      newsletterSignup: '/newsletter',
+      playlist: '/playlist'
+    };
   }
 
   if (environment === 'production') {
