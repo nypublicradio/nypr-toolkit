@@ -79,6 +79,8 @@
   {{/embed.column}}
 
   {{#embed.column}}
+    {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
+    
     {{embed.input 'title' 'Playlist Title (max 45 characters)' changeset=embed.changeset}}
     {{embed.input 'blurb' 'Short blurb (optional, max 110 characters)' changeset=embed.changeset}}
 
