@@ -28,6 +28,7 @@ module.exports = function(environment) {
     },
     themesIndex: process.env.THEMES,
     adminRoot: process.env.ADMIN_ROOT,
+    mailchimpProxy: process.env.MAILCHIMP_PROXY,
   };
 
   if (environment === 'development') {
@@ -49,7 +50,8 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
 
-    ENV.adminRoot = 'http://example.com/admin'
+    ENV.adminRoot = 'http://example.com/admin';
+    ENV.mailchimpProxy = 'http://example.com/mailchimp';
   }
 
   if (environment === 'production') {

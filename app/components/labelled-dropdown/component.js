@@ -5,11 +5,17 @@ import { get } from '@ember/object';
 export default LabelledInput.extend({
   tagName: 'div',
   classNames: ['labelled-dropdown'],
+  searchEnabled: false,
+
+  matcher({ label }, query) {
+    return label.toLowerCase().indexOf(query.toLowerCase());
+  },
 
   didInsertElement() {
     this._super(...arguments);
     let option = get(this, 'options.firstObject');
-    if (!option) {
+    let placeholder = get(this, 'placeholder');
+    if (!option || placeholder) {
       return;
     }
     later(() => this.send('onChange', option), 50);

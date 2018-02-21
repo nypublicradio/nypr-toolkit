@@ -61,6 +61,7 @@ Name | Default | Description
 `CALL_TO_ACTION` | `https://demo-apps.nypr.org/call-to-action/` | `call-to-action` url
 `NEWSLETTER_SIGNUP` | `https://demo-apps.nypr.org/newsletter-signup/` | `newsletter-signup` url
 `ADMIN_ROOT` | `https://internal.demo2.wnyc.net` | Used by `nypr-auth` to authenticate users against the publisher microservice
+`MAILCHIMP_PROXY` | `https://api.demo.nypr.digital/mailchimp-proxy` | Used by the newsletter interface to offer a list of Mailchimp newsletters
 
 ## Further Reading / Useful Links
 
