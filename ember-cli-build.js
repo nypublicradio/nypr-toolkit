@@ -23,5 +23,11 @@ module.exports = function(defaults) {
   app.import('node_modules/normalize.css/normalize.css');
   app.import('node_modules/pym.js/dist/pym.v1.js');
   app.import('vendor/shims/pym.js');
+
+  app.import({
+    development: 'node_modules/url-parse/dist/url-parse.js',
+    production: 'node_modules/url-parse/dist/url-parse.min.js'
+  });
+  app.import('vendor/shims/url-parse.js');
   return app.toTree();
 };

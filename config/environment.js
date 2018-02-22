@@ -24,7 +24,8 @@ module.exports = function(environment) {
 
     embeds: {
       callToAction: process.env.CALL_TO_ACTION,
-      newsletterSignup: process.env.NEWSLETTER_SIGNUP
+      newsletterSignup: process.env.NEWSLETTER_SIGNUP,
+      playlist: process.env.PLAYLIST
     },
     themesIndex: process.env.THEMES,
     adminRoot: process.env.ADMIN_ROOT,
@@ -52,6 +53,13 @@ module.exports = function(environment) {
 
     ENV.adminRoot = 'http://example.com/admin';
     ENV.mailchimpProxy = 'http://example.com/mailchimp';
+    ENV.themesIndex = 'http://example.com/themes';
+
+    ENV.embeds = {
+      callToAction: '/call-to-action',
+      newsletterSignup: '/newsletter',
+      playlist: '/playlist'
+    };
   }
 
   if (environment === 'production') {

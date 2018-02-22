@@ -5,6 +5,7 @@
   iframe=(component 'messaging-frame' register=(action 'register'))
   input=(component 'labelled-input' onInput=(action 'postMessage'))
   dropdown=(component 'labelled-dropdown' onChange=(action 'postMessage'))
+  list=(component 'list-input' onInput=(action 'postMessage'))
   changeset=changeset
 )}}
 
@@ -16,9 +17,10 @@
     </div>
 
     <div class="embed-dialog__markup">
-      {{#copy-block}}
+      {{#copy-block~}}
 &lt;div data-pym-src="{{embedCode}}"&gt;Loading...&lt;/div&gt;
-&lt;script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"&gt;&lt;/script&gt;{{/copy-block}}
+&lt;script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"&gt;&lt;/script&gt;
+      {{~/copy-block}}
     </div>
 
     <div class="embed-dialog__close">

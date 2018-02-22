@@ -1,7 +1,13 @@
 import Component from '@ember/component';
 
-export default Component.extend({
+const Label = Component.extend({
   tagName: 'label',
   classNames: ['labelled-input__label'],
   attributeBindings: ['for']
 });
+
+Label.reopenClass({
+  positionalParams: ['text']
+});
+
+export default Label;

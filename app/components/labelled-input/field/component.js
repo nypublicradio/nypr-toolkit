@@ -1,5 +1,11 @@
 import TextField from '@ember/component/text-field';
 
-export default TextField.extend({
+const Input = TextField.extend({
   classNameBindings: ['hasError']
 });
+
+Input.reopenClass({
+  positionalParams: ['placeholder']
+});
+
+export default Input;

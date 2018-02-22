@@ -18,9 +18,7 @@
     {{embed.input key='headline' changeset=embed.changeset}}
 
     {{#embed.input key='summary' changeset=embed.changeset as |input|}}
-      {{#input.label}}
-        Short blurb
-      {{/input.label}}
+      {{input.label 'Short Blurb'}}
       {{input.field}}
     {{/embed.input}}
 
@@ -58,9 +56,47 @@
   {{/embed.column}}
 
   {{#embed.column}}
+    {{embed.dropdown 'brand' changeset=embed.changeset options=model.themes}}
+    {{embed.input 'headline' 'Headline' changeset=embed.changeset}}
+    {{embed.dropdown 'mailchimpId' 'Mailchimp List' changeset=embed.changeset options=model.mailchimpLists searchEnabled=true placeholder='---'}}
+
+    {{embed.generateButton}}
+  {{/embed.column}}
+{{/module-embed}}
+
+<hr />
+
+{{#module-embed class="nypr-playlist" validations=PlaylistValidations as |embed|}}
+  {{#embed.header as |header|}}
+    {{#header.title}}<a name="playlist">Playlist</a>{{/header.title}}
+    {{#header.blurb}}
+      Make a playlist.
+    {{/header.blurb}}
+  {{/embed.header}}
+
+  {{#embed.column as |expand|}}
+    {{embed.iframe src=model.embeds.playlist name="playlist" expand=expand}}
+  {{/embed.column}}
+
+  {{#embed.column}}
     {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
-    {{embed.input key='headline' label='Headline' changeset=embed.changeset}}
-    {{embed.dropdown key='mailchimpId' label='Mailchimp List' changeset=embed.changeset options=model.mailchimpLists searchEnabled=true placeholder='---'}}
+    
+    {{embed.input 'title' 'Playlist Title (max 45 characters)' changeset=embed.changeset}}
+    {{embed.input 'blurb' 'Short blurb (optional, max 110 characters)' changeset=embed.changeset}}
+
+    {{#embed.list
+       inputs=2
+       changeset=embed.changeset
+       key='stories'
+       inputValidation=(action slugOrUrl)
+       as |list|}}
+
+        {{#list.inputs as |inputs|}}
+          {{inputs.input label='Story URL' transform=(action transformStoryURLs)}}
+        {{/list.inputs}}
+
+        {{list.add '+ Add more audio to the playlist'}}
+    {{/embed.list}}
 
     {{embed.generateButton}}
   {{/embed.column}}

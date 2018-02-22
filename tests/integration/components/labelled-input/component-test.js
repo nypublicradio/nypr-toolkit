@@ -12,24 +12,38 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{labelled-input}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(find('.labelled-input'));
 
   // Template block usage:
   this.render(hbs`
-    {{#labelled-input}}
-      template block text
+    {{#labelled-input as |input|}}
+      {{input.label 'Your Greeting'}}
+      {{input.field 'e.g. hello world'}}
     {{/labelled-input}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(find('.labelled-input__label').textContent.trim(), 'Your Greeting');
+  assert.equal(find('.labelled-input__input').placeholder, 'e.g. hello world');
+
+  this.render(hbs`
+    {{#labelled-input as |input|}}
+      {{#input.label}}
+        Dogs or Cats?
+      {{/input.label}}
+      {{input.field 'e.g. dogs'}}
+    {{/labelled-input}}
+  `);
+
+  assert.equal(find('.labelled-input__label').textContent.trim(), 'Dogs or Cats?');
+  assert.equal(find('.labelled-input__input').placeholder, 'e.g. dogs');
 });
 
 test('it transforms camelized keys to a capitalized label', function(assert) {
-  this.render(hbs`{{labelled-input key='fooBar'}}`);
+  this.render(hbs`{{labelled-input 'fooBar'}}`);
   assert.equal(find('.labelled-input').textContent.trim(), 'Foo Bar');
 });
 
 test('it accepts a label param', function(assert) {
-  this.render(hbs`{{labelled-input key='hello' label='world'}}`);
+  this.render(hbs`{{labelled-input 'hello' 'world'}}`);
   assert.equal(find('.labelled-input').textContent.trim(), 'world');
-})
+});
