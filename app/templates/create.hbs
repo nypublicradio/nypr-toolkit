@@ -13,23 +13,23 @@
   {{/embed.column}}
 
   {{#embed.column}}
-    {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
+    {{embed.dropdown 'brand' changeset=embed.changeset options=model.themes}}
 
-    {{embed.input key='headline' changeset=embed.changeset}}
+    {{embed.input 'headline' changeset=embed.changeset}}
 
-    {{#embed.input key='summary' changeset=embed.changeset as |input|}}
+    {{#embed.input'summary' changeset=embed.changeset as |input|}}
       {{input.label 'Short Blurb'}}
       {{input.field}}
     {{/embed.input}}
 
-    {{#embed.input key='callToAction' changeset=embed.changeset as |input|}}
+    {{#embed.input 'callToAction' changeset=embed.changeset as |input|}}
       {{#input.label}}
         Button text (if left blank, no button will appear)
       {{/input.label}}
       {{input.field}}
     {{/embed.input}}
 
-    {{#embed.input key='url' changeset=embed.changeset as |input|}}
+    {{#embed.input 'url' changeset=embed.changeset as |input|}}
       {{#input.label}}
         URL for the button
       {{/input.label}}
@@ -79,8 +79,8 @@
   {{/embed.column}}
 
   {{#embed.column}}
-    {{embed.dropdown key='brand' changeset=embed.changeset options=model.themes}}
-    
+    {{embed.dropdown 'brand' changeset=embed.changeset options=model.themes}}
+
     {{embed.input 'title' 'Playlist Title (max 45 characters)' changeset=embed.changeset}}
     {{embed.input 'blurb' 'Short blurb (optional, max 110 characters)' changeset=embed.changeset}}
 
