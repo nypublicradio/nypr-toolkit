@@ -17,7 +17,7 @@
 
     {{embed.input 'headline' changeset=embed.changeset}}
 
-    {{#embed.input'summary' changeset=embed.changeset as |input|}}
+    {{#embed.input 'summary' changeset=embed.changeset as |input|}}
       {{input.label 'Short Blurb'}}
       {{input.field}}
     {{/embed.input}}
