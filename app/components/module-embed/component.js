@@ -25,6 +25,7 @@ export default Component.extend({
     this.set('changeset', new Changeset(params, lookupValidator(validations), validations, { skipValidate: true }));
 
     this.set('queue', []);
+    this.set('pendingSubscriptions', []);
   },
 
   flushQueue() {
@@ -37,11 +38,28 @@ export default Component.extend({
     }
   },
 
+  subscribeAll(frame) {
+    let subs = this.get('pendingSubscriptions');
+    this.set('pendingSubscriptions', []);
+
+    subs.forEach(({component, message, callback}) => {
+      frame.onMessage(message, callback.bind(null, component));
+    })
+  },
+
+  subscribe(component, message, callback) {
+    this.get('pendingSubscriptions').push({component, message, callback});
+  },
+
   actions: {
     register(name, src, frame) {
       this.set('src', src);
       this.set('name', name);
       this.set('frame', frame);
+
+      if (this.get('pendingSubscriptions.length')) {
+        this.subscribeAll(frame);
+      }
     },
 
     postMessage(key, value) {
