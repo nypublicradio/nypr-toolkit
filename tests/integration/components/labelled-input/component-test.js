@@ -47,3 +47,27 @@ test('it accepts a label param', function(assert) {
   this.render(hbs`{{labelled-input 'hello' 'world'}}`);
   assert.equal(find('.labelled-input').textContent.trim(), 'world');
 });
+
+test('it calls subscribe if a subscription matches its key', function(assert) {
+  assert.expect(4);
+  const KEY = 'FOO KEY';
+  const CALLBACK = 'callback fn';
+  const MESSAGE = 'message to subscribe to';
+  this.setProperties({
+    key: KEY,
+    subscribe(component, message, callback) {
+      assert.ok('subscribe called');
+      assert.equal(component.get('key'), KEY, 'passed in component matches');
+      assert.equal(message, MESSAGE);
+      assert.equal(callback, CALLBACK);
+    },
+    subscriptions: {
+      [KEY]: [{
+        message: MESSAGE,
+        callback: CALLBACK
+      }]
+    }
+  });
+
+  this.render(hbs`{{labelled-input key subscriptions=subscriptions subscribe=subscribe}}`);
+})
