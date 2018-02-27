@@ -10,6 +10,23 @@ export default Controller.extend({
   PlaylistValidations,
   slugOrUrl,
 
+  init() {
+    this._super(...arguments);
+    this.set('playlistSubscriptions', {
+      stories: [{
+        message: 'not-found',
+        callback(component, slug) {
+          let changeset = component.get('listChangeset');
+          let change = changeset.get('changes').find(({ value }) => value.split('/').filter(s => s).slice(-1)[0] === slug);
+          if (change) {
+            let { key } = change;
+            changeset.addError(key, ["This is not a valid story or is not yet published. Double check the story's url"]);
+          }
+        }
+      }]
+    });
+  },
+
   transformStoryURLs(value) {
     if (value.startsWith('http')) {
       if (value.endsWith('/')) {
