@@ -20,7 +20,7 @@ export default Controller.extend({
           let change = changeset.get('changes').find(({ value }) => value.split('/').filter(s => s).slice(-1)[0] === slug);
           if (change) {
             let { key } = change;
-            changeset.addError(key, ["This is not a valid story or is not yet published. Double check the story's url"]);
+            changeset.addError(key, ["This is not a valid story or is not yet published. Double check the story's url."]);
           }
         }
       }]
