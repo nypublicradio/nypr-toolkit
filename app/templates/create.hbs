@@ -92,7 +92,7 @@
        as |list|}}
 
         {{#list.inputs as |inputs|}}
-          {{inputs.input label='Story URL' transform=(action transformStoryURLs)}}
+          {{inputs.input label='Story URL' placeholder='e.g. https://www.wnyc.org/story/rebar' transform=(action transformStoryURLs)}}
         {{/list.inputs}}
 
         {{list.add '+ Add more audio to the playlist'}}
