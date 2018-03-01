@@ -7,13 +7,10 @@ const LabelledInput = Component.extend({
 
   init() {
     this._super(...arguments);
-    let subscriptions = get(this, 'subscriptions');
-    if (subscriptions) {
-      let subscribingTo = get(subscriptions, get(this, 'key'));
-      if (subscribingTo && subscribingTo.length) {
-        subscribingTo.forEach(({ message, callback }) => get(this, 'subscribe')(this, message, callback));
-      }
-    }
+    let { key, subscribe } = this.getProperties('key', 'subscribe');
+    let subscribingTo = get(this, `subscriptions.${key}`) || [];
+
+    subscribingTo.forEach(({ message, callback }) => subscribe(this, message, callback));
   },
 
   key: '',
