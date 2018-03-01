@@ -1,9 +1,17 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 
 const LabelledInput = Component.extend({
   tagName:    'label',
   classNames: ['labelled-input'],
+
+  init() {
+    this._super(...arguments);
+    let { key, subscribe } = this.getProperties('key', 'subscribe');
+    let subscribingTo = get(this, `subscriptions.${key}`) || [];
+
+    subscribingTo.forEach(({ message, callback }) => subscribe(this, message, callback));
+  },
 
   key: '',
   label: computed('key', function() {
@@ -11,7 +19,8 @@ const LabelledInput = Component.extend({
     return key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
   }),
 
-  onInput() {}
+  onInput() {},
+  subscribe() {}
 });
 
 LabelledInput.reopenClass({

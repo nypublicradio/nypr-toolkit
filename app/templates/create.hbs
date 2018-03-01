@@ -66,7 +66,7 @@
 
 <hr />
 
-{{#module-embed class="nypr-playlist" validations=PlaylistValidations as |embed|}}
+{{#module-embed class="nypr-playlist" validations=PlaylistValidations subscriptions=playlistSubscriptions as |embed|}}
   {{#embed.header as |header|}}
     {{#header.title}}<a name="playlist">Playlist</a>{{/header.title}}
     {{#header.blurb}}
@@ -92,7 +92,7 @@
        as |list|}}
 
         {{#list.inputs as |inputs|}}
-          {{inputs.input label='Story URL' transform=(action transformStoryURLs)}}
+          {{inputs.input label='Story URL' placeholder='e.g. https://www.wnyc.org/story/rebar' transform=(action transformStoryURLs)}}
         {{/list.inputs}}
 
         {{list.add '+ Add more audio to the playlist'}}

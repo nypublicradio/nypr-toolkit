@@ -3,9 +3,9 @@
   column=(component 'module-embed/column')
   generateButton=(component 'module-embed/generate' click=(action 'generate'))
   iframe=(component 'messaging-frame' register=(action 'register'))
-  input=(component 'labelled-input' onInput=(action 'postMessage'))
+  input=(component 'labelled-input' onInput=(action 'postMessage') subscriptions=subscriptions subscribe=(action subscribe))
   dropdown=(component 'labelled-dropdown' onChange=(action 'postMessage'))
-  list=(component 'list-input' onInput=(action 'postMessage'))
+  list=(component 'list-input' onInput=(action 'postMessage') subscriptions=subscriptions subscribe=(action subscribe))
   changeset=changeset
 )}}
 

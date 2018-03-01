@@ -28,3 +28,21 @@ export function slugOrUrl({ newValue }) {
     return true;
   }
 }
+
+export const storyNotFound = {
+  stories: [{
+    message: 'not-found',
+    callback(component, slug) {
+      let changeset = component.get('listChangeset');
+      let change = changeset.get('changes').find(({ value }) => uriToSlug(value) === slug);
+      if (change) {
+        let { key } = change;
+        changeset.addError(key, ["This is not a valid story or is not yet published. Double check the story's url."]);
+      }
+    }
+  }]
+};
+
+function uriToSlug(uri) {
+  return uri.split('/').without('').slice(-1)[0];
+}

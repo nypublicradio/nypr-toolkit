@@ -29,7 +29,8 @@ export default function() {
   this.urlPrefix = config.adminRoot;
   this.get('/api/v1/is_logged_in/', () => ({is_staff: true}));
 
-  this.passthrough('https://demo-apps.nypr.org/themes/**');
+  this.passthrough(config.themesIndex);
+  this.passthrough(`${config.mailchimpProxy}/**`);
 }
 
 export function testConfig() {

@@ -30,7 +30,6 @@ test('embeds and communicates with iframes', function(assert) {
   let done = assert.async();
 
   const PARAMS = {};
-  const NAME = 'foo-name';
   const SRC = 'foo-src';
   const KEY = 'test-key'
   const ARRAY_KEY = 'array-key';
@@ -41,7 +40,6 @@ test('embeds and communicates with iframes', function(assert) {
     onMessage: this.mock().once().withArgs('mounted').callsArg(1)
   };
   this.setProperties({
-    name: NAME,
     src: SRC,
     params: PARAMS,
     key: KEY,
@@ -56,7 +54,7 @@ test('embeds and communicates with iframes', function(assert) {
 
   this.render(hbs`
     {{#module-embed params=params as |embed|}}
-      {{embed.iframe src=src name=name}}
+      {{embed.iframe src=src}}
 
       {{embed.input key=key changeset=embed.changeset class="text"}}
 
@@ -110,4 +108,59 @@ test('embeds and communicates with iframes', function(assert) {
       )
     )
   )
+});
+
+test('can subscribe to errors from iframe', function(assert) {
+  assert.expect(4);
+  let sendMock = this.stub();
+  let mockFrame = {
+    sendMessage: sendMock,
+    onMessage: this.stub().callsArg(1)
+  };
+  const SRC = 'foo-src';
+  const INPUT_KEY = 'input-key';
+  const ARRAY_KEY = 'array-key';
+  let subscriptions = {
+    [INPUT_KEY]: [{
+      message: 'test-message',
+      callback(component) {
+        assert.ok('text inputs can subscribe');
+        assert.equal(component.get('key'), INPUT_KEY, 'passed argument is the expected plain text component');
+      }
+    }],
+    [ARRAY_KEY]: [{
+      message: 'other-message',
+      callback(component) {
+        assert.ok('array inputs can subscribe');
+        assert.equal(component.get('key'), ARRAY_KEY, 'passed argument is the expected list input component')
+      }
+    }]
+  }
+  this.setProperties({
+    src: SRC,
+    inputKey: INPUT_KEY,
+    arrayKey: ARRAY_KEY,
+    subscriptions
+  });
+
+  this.stub(pym, 'Parent').returns(mockFrame);
+
+  this.render(hbs`
+    {{#module-embed subscriptions=subscriptions as |embed|}}
+      {{embed.iframe src=src}}
+
+      {{embed.input key=inputKey changeset=embed.changeset}}
+
+      {{#embed.list inputs=2 changeset=embed.changeset key=arrayKey as |list|}}
+        {{#list.inputs as |inputs|}}
+          {{inputs.input transform=transform}}
+        {{/list.inputs}}
+
+        {{list.add '+ Add more audio to the playlist'}}
+      {{/embed.list}}
+
+      {{embed.generateButton class='generate-button'}}
+    {{/module-embed}}
+  `);
+
 });

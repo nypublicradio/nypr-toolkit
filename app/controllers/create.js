@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import CTAValidations from '../validations/call-to-action';
 import NewsletterValidations from '../validations/newsletter';
-import PlaylistValidations, { slugOrUrl } from '../validations/playlist';
+import PlaylistValidations, { slugOrUrl, storyNotFound } from '../validations/playlist';
 import URL from 'url-parse';
 
 export default Controller.extend({
@@ -9,6 +9,7 @@ export default Controller.extend({
   NewsletterValidations,
   PlaylistValidations,
   slugOrUrl,
+  playlistSubscriptions: storyNotFound,
 
   transformStoryURLs(value) {
     if (value.startsWith('http')) {

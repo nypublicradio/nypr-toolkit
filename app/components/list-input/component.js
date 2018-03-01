@@ -10,9 +10,13 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    let validator = this.get('inputValidation');
-    let changeset = new Changeset({}, validator);
+    let { inputValidation, subscribe, key } = this.getProperties('inputValidation', 'subscribe', 'key');
+
+    let changeset = new Changeset({}, inputValidation);
     set(this, 'listChangeset', changeset);
+
+    let subscribingTo = get(this, `subscriptions.${key}`) || [];
+    subscribingTo.forEach(({ message, callback }) => subscribe(this, message, callback));
   },
   add() {
     this.incrementProperty('inputs');
@@ -33,5 +37,7 @@ export default Component.extend({
     if (onInput) {
       onInput(key, preparedValues);
     }
-  }
+  },
+
+  subscribe() {}
 });

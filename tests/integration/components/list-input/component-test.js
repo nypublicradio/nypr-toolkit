@@ -65,3 +65,29 @@ test('it sends ups the expected values', function(assert) {
     });
   });
 });
+
+test('it calls subscribe if a subscription matches its key', function(assert) {
+  assert.expect(4);
+  const KEY = 'TEST KEY';
+  const CALLBACK = 'callback fn';
+  const MESSAGE = 'message to subscribe to';
+  this.setProperties({
+    key: KEY,
+    subscribe(component, message, callback) {
+      assert.ok('subscribe called');
+      assert.equal(component.get('key'), KEY, 'passed in component matches');
+      assert.equal(message, MESSAGE);
+      assert.equal(callback, CALLBACK);
+    },
+    subscriptions: {
+      [KEY]: [{
+        message: MESSAGE,
+        callback: CALLBACK
+      }]
+    }
+  });
+
+  this.render(hbs`
+    {{list-input key=key subscriptions=subscriptions subscribe=subscribe}}
+  `);
+});
