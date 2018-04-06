@@ -9,6 +9,21 @@ Templates can be found in `apps/templates/`. The text is rendered using a versio
 [See here for more info on the CommonMark syntax](http://commonmark.org/help/)
 
 ## Development
+Clone the repo.
+```
+$ git clone git@github.com:nypublicradio/nypr-toolkit.git
+```
+
+Switch to the directory.
+```
+$ cd nypr-toolkit
+```
+
+Install dependencies.
+```
+$ npm install
+$ bower install
+```
 
 To develop interactively with other modules, you'll need to add URLs that point to live instances of each module. You can point to the demo versions or spin up local copies and point to those.
 
@@ -38,6 +53,7 @@ You will need the following things properly installed on your computer.
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM)
 * [Ember CLI](https://ember-cli.com/)
+* [Bower](https://bower.io/)
 * [Google Chrome](https://google.com/chrome/)
 
 ## Running Tests
