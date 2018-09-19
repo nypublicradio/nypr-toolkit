@@ -43,6 +43,9 @@ jobs:
       - restore_cache:
           key: bower-deps-{{ checksum "bower.json" }}
       - run:
+          name: Create test .env
+          command: cp .env.sample .env
+      - run:
           name: Test
           command: ./node_modules/ember-cli/bin/ember test
 
