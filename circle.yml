@@ -12,7 +12,7 @@ jobs:
           key: node-deps-{{ checksum "circle.yml" }}-{{ checksum "package.json" }}
       - run:
           name: Install node dependencies
-          command: npm i --no-package-lock
+          command: npm i
       - save_cache:
           key: node-deps-{{ checksum "circle.yml" }}-{{ checksum "package.json" }}
           paths:
