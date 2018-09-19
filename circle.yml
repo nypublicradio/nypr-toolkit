@@ -3,18 +3,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.7
+      - image: circleci/node:8
 
     steps:
       - checkout
 
       - restore_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "circle.yml" }}-{{ checksum "package.json" }}
       - run:
           name: Install node dependencies
           command: npm i --no-package-lock
       - save_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "circle.yml" }}-{{ checksum "package.json" }}
           paths:
             - ./node_modules
 
@@ -32,14 +32,14 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:8.7-browsers
+      - image: circleci/node:8-browsers
         environment:
           JOBS: 2
 
     steps:
       - checkout
       - restore_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "circle.yml" }}-{{ checksum "package.json" }}
       - restore_cache:
           key: bower-deps-{{ checksum "bower.json" }}
       - run:
@@ -48,13 +48,13 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:8.7
+      - image: circleci/node:8
         environment:
           JOBS: 2
     steps:
       - checkout
       - restore_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "circle.yml" }}-{{ checksum "package.json" }}
       - restore_cache:
           key: bower-deps-{{ checksum "bower.json" }}
       - run:
