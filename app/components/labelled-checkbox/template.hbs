@@ -2,7 +2,7 @@
   type="checkbox"
   class="labelled-checkbox__checkbox"
   hasError=(if (get changeset.error key) true)
-  change=(action (mut (get changeset key)) (not (get changeset key)))
+  change=(action 'onChange')
   name=key
 }}
 <span class="labelled-checkbox__text">{{label}}</span>

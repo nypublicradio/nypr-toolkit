@@ -6,7 +6,7 @@
   input=(component 'labelled-input' onInput=(action 'postMessage') subscriptions=subscriptions subscribe=(action subscribe))
   checkbox=(component 'labelled-checkbox' onChange=(action 'postMessage'))
   dropdown=(component 'labelled-dropdown' onChange=(action 'postMessage'))
-  textarea=(component 'labelled-textarea' onChange=(action 'postMessage'))
+  textarea=(component 'labelled-textarea' onInput=(action 'postMessage'))
   hidden=(component 'hidden-input' onChange=(action 'postMessage'))
   list=(component 'list-input' onInput=(action 'postMessage') subscriptions=subscriptions subscribe=(action subscribe))
   changeset=changeset
