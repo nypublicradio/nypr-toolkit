@@ -75,7 +75,10 @@ export default Component.extend({
         if (changeset.get('isValid')) {
           changeset.save().then(() => {
             let params = this.get('params');
-            let queryParams = Object.keys(params).map(key => `${key}=${encodeURIComponent(params[key])}`).join('&');
+            let queryParams = Object.keys(params)
+              .filter(key => params[key] !== '')
+              .map(key => `${key}=${encodeURIComponent(params[key])}`)
+              .join('&');
             this.set('embedCode', `${this.get('src')}${queryParams ? `?${queryParams}` : ''}`);
             this.set('showDialog', true);
           });

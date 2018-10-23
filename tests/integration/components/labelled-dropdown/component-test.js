@@ -8,7 +8,8 @@ moduleForComponent('labelled-dropdown', 'Integration | Component | labelled drop
 });
 
 test('it renders', function(assert) {
-  assert.expect(3);
+  // 1.find, 2.onChange, 3.set, 4.set again (clear on destroy)
+  assert.expect(4);
 
   this.render(hbs`{{labelled-dropdown}}`);
 
