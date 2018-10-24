@@ -67,6 +67,7 @@
       {{embed.dropdown 'partnerOrg' 'Partner Organization' changeset=embed.changeset options=model.partnerOrgs}}
       {{#if (eq embed.changeset.partnerOrg 'Other')}}
         {{embed.textarea 'legalText' 'Custom Legal Language' characterLimit=250 changeset=embed.changeset}}
+        <div class="help-text">Any custom language must be approved by NYPR legal team. Language that exceeds 250 characters requires Digital approval due to impact to page design.</div>
       {{else if (eq embed.changeset.partnerOrg 'ProPublica')}}
         {{embed.hidden 'legalText' value="By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our <a href='https://www.wnyc.org/terms/' target='_blank' rel='noopener'>Terms of Use</a> and in accordance with the <a href='https://www.propublica.org/legal/' target='_blank' rel='noopener'>Privacy Policy</a> of ProPublica." changeset=embed.changeset}}
       {{/if}}
