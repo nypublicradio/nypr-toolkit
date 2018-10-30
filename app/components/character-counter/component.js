@@ -13,7 +13,5 @@ export default Component.extend({
   remaining: computed('limit', 'count', function() {
     return get(this, 'limit') - get(this, 'count');
   }),
-  limitExceeded: computed('remaining', function() {
-    return get(this, 'remaining') < 0;
-  })
+  limitExceeded: computed.lt('remaining', 0)
 });

@@ -14,7 +14,7 @@ const LabelledInput = Component.extend({
 
     subscribingTo.forEach(({ message, callback }) => subscribe(this, message, callback));
 
-    if(value !== undefined && changeset) {
+    if (value !== undefined && changeset) {
       if (onInput) {
         onInput(key, value);
       }

@@ -14,11 +14,9 @@ export default Route.extend({
       .then(({lists}) => lists.sort((a, b) => a.name.localeCompare(b.name))
                               .map(({name, id}) => ({label: name, value: id})));
     let partnerOrgs = [
-      {label: 'ProPublica',
-      value: 'ProPublica'},
-      {label: 'Other',
-      value: 'Other'}
-      ]
+      { label: 'ProPublica', value: 'ProPublica'},
+      { label: 'Other', value: 'Other'}
+    ];
 
     return RSVP.hash({
       themes,
