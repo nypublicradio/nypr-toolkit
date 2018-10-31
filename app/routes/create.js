@@ -13,11 +13,16 @@ export default Route.extend({
       .then(r => r.json())
       .then(({lists}) => lists.sort((a, b) => a.name.localeCompare(b.name))
                               .map(({name, id}) => ({label: name, value: id})));
+    let partnerOrgs = [
+      {label: 'ProPublica', value: 'ProPublica'},
+      {label: 'Other', value: 'Other'}
+    ];
 
     return RSVP.hash({
       themes,
       mailchimpLists,
-      embeds: RSVP.Promise.resolve(embeds)
+      embeds: RSVP.Promise.resolve(embeds),
+      partnerOrgs
     });
   }
 });

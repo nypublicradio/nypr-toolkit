@@ -13,7 +13,9 @@
 @import "components/embed-dialog";
 @import "components/messaging-frame";
 @import "components/labelled-input";
+@import "components/labelled-checkbox";
 @import "components/labelled-dropdown";
+@import "components/labelled-textarea";
 @import "components/copy-block";
 @import "components/site-header";
 @import "components/auth-dialog";
@@ -24,6 +26,12 @@
 
 .iframe-label {
   @include small-text-display;
+}
+
+.help-text {
+  @include small-text-display;
+  line-height: 1.67;
+  margin-bottom: 25px;
 }
 
 $ember-power-select-default-border-radius: 0;

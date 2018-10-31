@@ -1,0 +1,25 @@
+<div class="labelled-textarea__helptext">
+  <label class="labelled-textarea__label" for={{concat key '-textarea'}}>{{label}}</label>
+  {{#if characterLimit}}
+    {{character-counter class="labelled-textarea__counter" limit=characterLimit text=(get changeset key)}}
+  {{/if}}
+</div>
+{{textarea
+  class="labelled-textarea__textarea"
+  hasError=(if (get changeset.error key) true)
+  value=(get changeset key)
+  input=(action onInput key (get changeset key) transform)
+  placeholder=placeholder
+  name=key
+  id=(concat key '-textarea')
+}}
+
+{{#if (get changeset.error key)}}
+  <ul class="labelled-textarea__errors">
+    {{#each (get (get changeset.error key) 'validation') as |message|}}
+    <li>
+      {{message}}
+    </li>
+    {{/each}}
+  </ul>
+{{/if}}

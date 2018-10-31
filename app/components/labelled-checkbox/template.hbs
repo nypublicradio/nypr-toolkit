@@ -1,0 +1,18 @@
+{{input
+  type="checkbox"
+  class="labelled-checkbox__checkbox"
+  hasError=(if (get changeset.error key) true)
+  change=(action 'onChange')
+  name=key
+}}
+<span class="labelled-checkbox__text">{{label}}</span>
+
+{{#if (get changeset.error key)}}
+  <ul class="labelled-checkbox__errors">
+    {{#each (get (get changeset.error key) 'validation') as |message|}}
+    <li>
+      {{message}}
+    </li>
+    {{/each}}
+  </ul>
+{{/if}}
