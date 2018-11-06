@@ -60,10 +60,17 @@
     {{embed.input 'headline' 'Headline' changeset=embed.changeset}}
     {{embed.dropdown 'mailchimpId' 'Mailchimp List' changeset=embed.changeset options=model.mailchimpLists searchEnabled=true placeholder='---'}}
 
-    {{embed.checkbox 'optIn' 'This widget will be used to collect email on the behalf of WNYC and a Partner Organization (e.g. ProPublica)'
-    changeset=embed.changeset}}
+    <div class="labelled-checkbox">
+      {{input
+        type="checkbox"
+        class="labelled-checkbox__checkbox"
+        checked=hasPartnerOrg
+        name=key
+      }}
+      <span class="labelled-checkbox__text">This widget will be used to collect email on the behalf of WNYC and a Partner Organization (e.g. ProPublica)</span>
+    </div>
 
-    {{#if embed.changeset.optIn}}
+    {{#if hasPartnerOrg}}
       {{embed.dropdown 'partnerOrg' 'Partner Organization' changeset=embed.changeset options=model.partnerOrgs}}
       {{#if (eq embed.changeset.partnerOrg 'Other')}}
         {{embed.textarea 'legalText' 'Custom Legal Language' characterLimit=250 changeset=embed.changeset}}
@@ -71,6 +78,8 @@
       {{else if (eq embed.changeset.partnerOrg 'ProPublica')}}
         {{embed.hidden 'legalText' value="By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our {WNYC_TERMS} and in accordance with the {PROPUBLICA_PRIVACY} of ProPublica." changeset=embed.changeset}}
       {{/if}}
+    {{else}}
+      {{embed.hidden 'partnerOrg' value="None" changeset=embed.changeset}}
     {{/if}}
 
     {{embed.generateButton}}
