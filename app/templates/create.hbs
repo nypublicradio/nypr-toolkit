@@ -75,8 +75,6 @@
       {{#if (eq embed.changeset.partnerOrg 'Other')}}
         {{embed.textarea 'legalText' 'Custom Legal Language' characterLimit=250 changeset=embed.changeset}}
         <div class="help-text">Any custom language must be approved by NYPR legal team. Language that exceeds 250 characters requires Digital approval due to impact to page design.</div>
-      {{else if (eq embed.changeset.partnerOrg 'ProPublica')}}
-        {{embed.hidden 'legalText' value="By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our {WNYC_TERMS} and in accordance with the {PROPUBLICA_PRIVACY} of ProPublica." changeset=embed.changeset}}
       {{/if}}
     {{else}}
       {{embed.hidden 'partnerOrg' value="None" changeset=embed.changeset}}
