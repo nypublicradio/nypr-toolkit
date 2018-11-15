@@ -60,6 +60,10 @@
     {{embed.input 'headline' 'Headline' changeset=embed.changeset}}
     {{embed.dropdown 'mailchimpId' 'Mailchimp List' changeset=embed.changeset options=model.mailchimpLists searchEnabled=true placeholder='---'}}
 
+    {{embed.hidden 'mailchimpName'
+    changeset=embed.changeset
+    value=(get (find-by 'value' embed.changeset.mailchimpId  model.mailchimpLists) 'label')}}
+
     <div class="labelled-checkbox">
       {{input
         type="checkbox"
