@@ -43,6 +43,7 @@ The toolkit site will embed configurable instances of the following static apps:
 
 - `call-to-action`: https://github.com/nypublicradio/nypr-call-to-action
 - `newsletter-signup`: https://github.com/nypublicradio/nypr-newsletter-signup
+- `playlist`: https://github.com/nypublicradio/nypr-playlist
 
 Each of these has their own corresponding envvar which points at a running instance (described above).
 
