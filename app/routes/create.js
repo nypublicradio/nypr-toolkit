@@ -9,10 +9,11 @@ export default Route.extend({
   model() {
     let themes = fetch(themesIndex)
       .then(r => r.json());
-    let mailchimpLists = fetch(`${mailchimpProxy}/lists?fields=lists.name,lists.id&count=400`)
+    let mailchimpLists = fetch(`${mailchimpProxy}/lists`)
       .then(r => r.json())
-      .then(({lists}) => lists.sort((a, b) => a.name.localeCompare(b.name))
-                              .map(({name, id}) => ({label: name, value: id})));
+      .then(({lists}) => lists.sort((a, b) => a.localeCompare(b)).map(l => {
+        return {'label': l, 'value': l}
+      }))
     let partnerOrgs = [
       {label: 'ProPublica', value: 'ProPublica'},
       {label: 'Other', value: 'Other'}
